@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { subjectsData } from '../data/questions';
 
-export const Sidebar = () => {
+export const Sidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -13,15 +13,20 @@ export const Sidebar = () => {
     { name: 'Settings', icon: '⚙️', path: '/settings' },
   ];
 
+  const handleNav = (path) => {
+    navigate(path);
+    if (onClose) onClose();
+  };
+
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isOpen ? 'mobile-open' : ''}`}>
       <div className="sidebar-logo">Ed<span>Qualis</span></div>
       <ul className="sidebar-menu">
         {menuItems.map((item) => (
           <li 
             key={item.name} 
             className={`sidebar-item ${location.pathname === item.path ? 'active' : ''}`}
-            onClick={() => navigate(item.path)}
+            onClick={() => handleNav(item.path)}
           >
             <i>{item.icon}</i>
             <span>{item.name}</span>
@@ -32,9 +37,10 @@ export const Sidebar = () => {
   );
 };
 
-export const TopHeader = () => {
+export const TopHeader = ({ onToggleSidebar }) => {
   return (
     <div className="top-header">
+      <div className="hamburger" onClick={onToggleSidebar}>☰</div>
       <div className="search-bar">
         <span>🔍</span>
         <input type="text" placeholder="Search subjects, units..." />
@@ -44,6 +50,23 @@ export const TopHeader = () => {
         <div className="user-profile">
           <div className="user-avatar">JD</div>
           <div style={{fontWeight: 600}}>John Doe</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const Layout = ({ children }) => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <div className="app-container">
+      <div className={`mobile-overlay ${isSidebarOpen ? 'active' : ''}`} onClick={() => setSidebarOpen(false)}></div>
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="content-wrapper">
+        <TopHeader onToggleSidebar={() => setSidebarOpen(!isSidebarOpen)} />
+        <div className="main-scroll-area">
+          {children}
         </div>
       </div>
     </div>
@@ -90,20 +113,14 @@ const SubjectCard = ({ subject, index }) => {
 
 const Home = () => {
   return (
-    <div className="app-container">
-      <Sidebar />
-      <div className="content-wrapper">
-        <TopHeader />
-        <div className="main-scroll-area">
-          <h1 className="page-title">My Learning Path</h1>
-          <div className="dashboard-grid">
-            {subjectsData.map((subject, index) => (
-              <SubjectCard key={subject.id} subject={subject} index={index} />
-            ))}
-          </div>
-        </div>
+    <Layout>
+      <h1 className="page-title">My Learning Path</h1>
+      <div className="dashboard-grid">
+        {subjectsData.map((subject, index) => (
+          <SubjectCard key={subject.id} subject={subject} index={index} />
+        ))}
       </div>
-    </div>
+    </Layout>
   );
 };
 

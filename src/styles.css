@@ -171,12 +171,22 @@ body {
   opacity: 0.8;
 }
 
-/* --- Main Content --- */
+/* Layout & Containers */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    overflow: hidden;
+    position: relative;
+}
+
 .content-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .top-header {

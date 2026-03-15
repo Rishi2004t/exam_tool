@@ -49,7 +49,7 @@ const TestPage = () => {
       state: { 
         answers, 
         testQuestions, 
-        studentName: 'John Doe',
+        studentName: localStorage.getItem('studentName') || 'Guest Candidate',
         subjectTitle,
         unitTitle,
         unitId
