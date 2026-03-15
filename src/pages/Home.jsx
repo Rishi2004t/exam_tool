@@ -46,13 +46,13 @@ export const TopHeader = ({ onToggleSidebar }) => {
       <button type="button" className="hamburger" onClick={onToggleSidebar} aria-label="Open sidebar">☰</button>
       <div className="search-bar">
         <span>🔍</span>
-        <input type="text" placeholder="Search subjects, units..." />
+        <input type="text" placeholder="Search..." />
       </div>
       <div className="header-actions">
         <div className="notification-icon" style={{fontSize: '1.5rem', cursor: 'pointer'}}>🔔</div>
         <div className="user-profile">
           <div className="user-avatar">JD</div>
-          <div style={{fontWeight: 600}}>John Doe</div>
+          <span className="desktop-only" style={{fontWeight: 600, marginLeft: '8px'}}>John Doe</span>
         </div>
       </div>
     </div>
