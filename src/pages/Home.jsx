@@ -19,7 +19,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`sidebar ${isOpen ? 'mobile-open' : ''}`}>
+    <div className={`sidebar ${isOpen ? 'mobile-open' : 'closed'}`}>
       <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', padding: '0 10px'}}>
         <div className="sidebar-logo" style={{marginBottom: 0}}>Ed<span>Qualis</span></div>
         <button type="button" className="sidebar-close-btn" onClick={onClose} aria-label="Close sidebar">✕</button>
@@ -60,11 +60,11 @@ export const TopHeader = ({ onToggleSidebar }) => {
 };
 
 export const Layout = ({ children }) => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1024);
 
   return (
     <div className="app-container">
-      <div className={`mobile-overlay ${isSidebarOpen ? 'active' : ''}`} onClick={() => setSidebarOpen(false)}></div>
+      <div className={`mobile-overlay ${isSidebarOpen && window.innerWidth <= 1024 ? 'active' : ''}`} onClick={() => setSidebarOpen(false)}></div>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="content-wrapper">
         <TopHeader onToggleSidebar={() => setSidebarOpen(!isSidebarOpen)} />
