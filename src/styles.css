@@ -628,3 +628,118 @@ body {
   .subject-card h3 { font-size: 18px !important; }
   .btn-continue { font-size: 16px !important; }
 }
+
+/* --- Responsive Test Interface --- */
+.test-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.test-header {
+  height: 80px;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.test-content-layout {
+  display: flex;
+  flex: 1;
+  padding: 40px;
+  gap: 40px;
+  overflow: hidden;
+}
+
+.test-question-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.test-sidebar-palette {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-y: auto;
+}
+
+.question-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 1024px) {
+  .test-content-layout {
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+    overflow-y: auto;
+  }
+  
+  .test-sidebar-palette {
+    width: 100%;
+    overflow-y: visible;
+  }
+
+  .test-question-section {
+    flex: none;
+    padding-right: 0;
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 768px) {
+  .test-header {
+    height: auto;
+    padding: 16px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .test-header-timer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .test-question-card {
+    padding: 24px !important;
+  }
+
+  .question-text {
+    font-size: 1.4rem !important;
+    margin-bottom: 24px !important;
+  }
+
+  .option-button {
+    padding: 16px 20px !important;
+    font-size: 1rem !important;
+  }
+
+  .nav-buttons-footer {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-buttons-footer button {
+    width: 100%;
+    min-width: unset !important;
+  }
+}

@@ -62,25 +62,25 @@ const TestPage = () => {
   const currentQuestion = testQuestions[currentQuestionIndex];
 
   return (
-    <div className="content-wrapper" style={{minHeight: '100vh', background: 'transparent'}}>
+    <div className="test-container animate-in">
       {/* Test Header */}
-      <div style={{ padding: '24px 48px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+      <div className="test-header">
         <div style={{color: 'white'}}>
           <div style={{fontSize: '0.85rem', fontWeight: 700, opacity: 0.6, textTransform: 'uppercase'}}>{subjectTitle}</div>
           <div style={{fontSize: '1.25rem', fontWeight: 800}}>{unitTitle}</div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-          <div style={{ background: 'rgba(59, 130, 246, 0.2)', padding: '10px 20px', borderRadius: '12px', border: '1px solid var(--theme-primary)', color: 'var(--theme-primary)', fontWeight: 800, fontSize: '1.2rem' }}>
+        <div className="test-header-timer">
+          <div style={{ background: 'rgba(59, 130, 246, 0.2)', padding: '10px 24px', borderRadius: '12px', border: '1px solid var(--theme-primary)', color: 'var(--theme-primary)', fontWeight: 800, fontSize: '1.2rem', marginRight: '20px' }}>
             ⏱️ {formatTime(timeLeft)}
           </div>
-          <button className="btn btn-primary" onClick={handleFinish} style={{padding: '12px 32px', fontSize: '1rem'}}>Submit Final</button>
+          <button className="btn btn-primary" onClick={handleFinish} style={{padding: '12px 24px', fontSize: '1rem'}}>Submit Final</button>
         </div>
       </div>
 
-      <div style={{ display: 'flex', flex: 1, padding: '40px', gap: '40px', overflow: 'hidden' }}>
+      <div className="test-content-layout">
         {/* Question Area */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '32px', overflowY: 'auto' }}>
-          <div className="settings-section" style={{ padding: '60px', borderRadius: '32px' }}>
+        <div className="test-question-section">
+          <div className="settings-section test-question-card" style={{ padding: '60px', borderRadius: '32px', marginBottom: 0 }}>
              <div style={{marginBottom: '32px', display: 'flex', flexDirection: 'column', gap: '12px'}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                    <span style={{background: 'var(--theme-primary)', color: 'white', padding: '6px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 800}}>QUESTION {currentQuestionIndex + 1} OF {testQuestions.length}</span>
@@ -90,12 +90,13 @@ const TestPage = () => {
                    <div style={{height: '100%', background: 'var(--theme-primary)', width: `${((currentQuestionIndex + 1) / testQuestions.length) * 100}%`, transition: 'width 0.3s ease'}}></div>
                 </div>
              </div>
-             <h2 style={{fontSize: '2rem', lineHeight: 1.4, marginBottom: '48px', fontWeight: 700}}>{currentQuestion.text}</h2>
+             <h2 className="question-text" style={{fontSize: '2rem', lineHeight: 1.4, marginBottom: '48px', fontWeight: 700}}>{currentQuestion.text}</h2>
              
              <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
                 {currentQuestion.options.map((opt, i) => (
                   <button 
                     key={i}
+                    className="option-button"
                     onClick={() => handleAnswerSelect(i)}
                     style={{
                       textAlign: 'left',
@@ -116,7 +117,7 @@ const TestPage = () => {
              </div>
           </div>
 
-          <div style={{display: 'flex', gap: '20px', justifyContent: 'center'}}>
+          <div className="nav-buttons-footer" style={{display: 'flex', gap: '20px', justifyContent: 'center'}}>
             <button 
               className="btn btn-secondary" 
               disabled={currentQuestionIndex === 0}
@@ -137,10 +138,10 @@ const TestPage = () => {
         </div>
 
         {/* Sidebar Mini Navigation */}
-        <div style={{ width: '320px', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div className="test-sidebar-palette">
           <div className="settings-section" style={{padding: '24px'}}>
             <h4 style={{marginBottom: '20px', opacity: 0.6}}>QUESTION PALETTE</h4>
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px'}}>
+            <div className="question-palette-grid">
               {testQuestions.map((_, i) => (
                 <div 
                   key={i}
@@ -167,6 +168,8 @@ const TestPage = () => {
         </div>
       </div>
     </div>
+  );
+};
   );
 };
 
