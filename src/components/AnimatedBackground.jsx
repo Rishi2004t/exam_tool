@@ -21,9 +21,7 @@ const AnimatedBackground = ({ children }) => {
   return (
     <ThemeContext.Provider value={{ theme, updateTheme }}>
       <div className="edqualis-bg"></div>
-      <div className="app-container">
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   );
 };

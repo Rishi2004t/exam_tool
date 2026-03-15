@@ -15,7 +15,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
   const handleNav = (path) => {
     navigate(path);
-    if (onClose) onClose();
+    if (window.innerWidth <= 1024 && onClose) onClose();
   };
 
   return (
@@ -62,9 +62,24 @@ export const TopHeader = ({ onToggleSidebar }) => {
 export const Layout = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1024);
 
+  // Sync sidebar state on resize to handle orientation changes
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) setSidebarOpen(true);
+      else setSidebarOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = window.innerWidth <= 1024;
+
   return (
     <div className="app-container">
-      <div className={`mobile-overlay ${isSidebarOpen && window.innerWidth <= 1024 ? 'active' : ''}`} onClick={() => setSidebarOpen(false)}></div>
+      <div 
+        className={`mobile-overlay ${isSidebarOpen && isMobile ? 'active' : ''}`} 
+        onClick={() => setSidebarOpen(false)}
+      ></div>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="content-wrapper">
         <TopHeader onToggleSidebar={() => setSidebarOpen(!isSidebarOpen)} />
