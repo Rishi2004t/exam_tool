@@ -20,7 +20,10 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <div className={`sidebar ${isOpen ? 'mobile-open' : ''}`}>
-      <div className="sidebar-logo">Ed<span>Qualis</span></div>
+      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px'}}>
+        <div className="sidebar-logo" style={{marginBottom: 0}}>Ed<span>Qualis</span></div>
+        <button className="sidebar-close-btn" onClick={onClose}>✕</button>
+      </div>
       <ul className="sidebar-menu">
         {menuItems.map((item) => (
           <li 
