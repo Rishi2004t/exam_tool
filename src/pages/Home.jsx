@@ -99,8 +99,18 @@ const SubjectCard = ({ subject, index }) => {
   const completedInSubject = subjectUnits.filter(id => completedUnits.includes(id)).length;
   const progress = subjectUnits.length > 0 ? Math.round((completedInSubject / subjectUnits.length) * 100) : 0;
 
+  const handleCardClick = () => {
+    if (!subject.locked) {
+      navigate(`/unit/${subject.id}`);
+    }
+  };
+
   return (
-    <div className={`subject-card ${subject.locked ? 'locked' : ''} animate-in`} style={{animationDelay: `${index * 0.1}s`}}>
+    <div 
+      className={`subject-card ${subject.locked ? 'locked' : ''} animate-in`} 
+      style={{animationDelay: `${index * 0.1}s`}}
+      onClick={handleCardClick}
+    >
       <div className="card-icon-wrapper">
         {subject.locked ? '🔒' : (progress === 100 ? '✅' : (progress > 0 ? '⏳' : '📚'))}
       </div>
@@ -115,7 +125,7 @@ const SubjectCard = ({ subject, index }) => {
           <div className="progress-track">
             <div className="progress-thumb" style={{width: `${progress}%`}}></div>
           </div>
-          <button className="btn-continue" onClick={() => navigate(`/unit/${subject.id}`)}>
+          <button className="btn-continue" style={{pointerEvents: 'none'}}>
             {progress > 0 ? 'Continue Learning' : 'Start Subject'}
           </button>
         </div>

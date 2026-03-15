@@ -302,7 +302,7 @@ body {
   padding-bottom: 40px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .dashboard-grid {
     grid-template-columns: repeat(2, 1fr); /* Tablet: 2 per row */
   }
@@ -328,6 +328,7 @@ body {
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .subject-card::before {
@@ -518,7 +519,7 @@ body {
 
 /* --- Responsive Sidebar & Layout --- */
 .hamburger {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
@@ -530,6 +531,10 @@ body {
   margin-right: 15px;
 }
 
+@media (max-width: 1024px) {
+  .hamburger { display: flex; }
+}
+
 .sidebar-close-btn {
   background: transparent;
   border: none;
@@ -537,9 +542,13 @@ body {
   font-size: 1.5rem;
   cursor: pointer;
   padding: 5px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-close-btn { display: flex; }
 }
 
 .mobile-overlay {
