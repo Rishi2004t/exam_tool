@@ -20,9 +20,9 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <div className={`sidebar ${isOpen ? 'mobile-open' : ''}`}>
-      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', padding: '0 10px'}}>
         <div className="sidebar-logo" style={{marginBottom: 0}}>Ed<span>Qualis</span></div>
-        <button className="sidebar-close-btn" onClick={onClose}>✕</button>
+        <button type="button" className="sidebar-close-btn" onClick={onClose} aria-label="Close sidebar">✕</button>
       </div>
       <ul className="sidebar-menu">
         {menuItems.map((item) => (
@@ -43,7 +43,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
 export const TopHeader = ({ onToggleSidebar }) => {
   return (
     <div className="top-header">
-      <div className="hamburger" onClick={onToggleSidebar}>☰</div>
+      <button type="button" className="hamburger" onClick={onToggleSidebar} aria-label="Open sidebar">☰</button>
       <div className="search-bar">
         <span>🔍</span>
         <input type="text" placeholder="Search subjects, units..." />
