@@ -119,9 +119,9 @@ export const subjectsData = [
       }
     ],
     studyMaterials: [
-      { id: 'ie-n1', title: 'Unit 1: Ethics Notes', description: 'Comprehensive notes on professional ethics and moral decision making.', fileUrl: '/resources/industrial-ethics/unit1-notes.pdf' },
-      { id: 'ie-n2', title: 'Unit 2: Professional Ethics', description: 'Detailed guide on intellectual property and corporate ethics.', fileUrl: '/resources/industrial-ethics/unit2-notes.pdf' },
-      { id: 'ie-n3', title: 'Unit 3: CSR & Startups', description: 'Notes on corporate social responsibility and startup policies in India.', fileUrl: '/resources/industrial-ethics/unit3-notes.pdf' }
+      { id: 'ie-n1', title: 'Unit 1: Ethics Notes', description: 'Comprehensive notes on professional ethics and moral decision making.', fileUrl: '/resources/industrial-ethics/Unit 1.pdf' },
+      { id: 'ie-n2', title: 'Unit 2: Professional Ethics', description: 'Detailed guide on intellectual property and corporate ethics.', fileUrl: '/resources/industrial-ethics/Unit 2.pdf' },
+      { id: 'ie-n3', title: 'Unit 3: CSR & Startups', description: 'Notes on corporate social responsibility and startup policies in India.', fileUrl: '/resources/industrial-ethics/Unit 3.pdf' }
     ],
     pptMaterials: [
       { id: 'ie-p1', title: 'Industrial Ethics – Unit 1 PPT', description: 'Presentation slides covering introduction to ethics and moral values.', fileUrl: '/resources/ppt/industrial-ethics/ethics-unit1.pptx' },
