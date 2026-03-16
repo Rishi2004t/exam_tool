@@ -114,25 +114,25 @@ const SubjectCard = ({ subject, index }) => {
       <div className="card-icon-wrapper">
         {subject.locked ? '🔒' : (progress === 100 ? '✅' : (progress > 0 ? '⏳' : '📚'))}
       </div>
-      <h3>{subject.title}</h3>
+      <h3 style={{ marginBottom: '12px' }}>{subject.title}</h3>
       
       {!subject.locked ? (
         <div className="card-progress">
-          <div className="progress-info">
-            <span>Progress Tracking</span>
+          <div className="progress-info" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: '#94a3b8', fontSize: '0.85rem', fontWeight: 600 }}>
+            <span>Progress</span>
             <span>{progress}%</span>
           </div>
-          <div className="progress-track">
-            <div className="progress-thumb" style={{width: `${progress}%`}}></div>
+          <div className="progress-track" style={{ height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '10px', overflow: 'hidden', marginBottom: '24px' }}>
+            <div className="progress-thumb" style={{ width: `${progress}%`, height: '100%', background: 'var(--theme-primary)', transition: 'width 0.5s ease' }}></div>
           </div>
-          <button className="btn-continue" style={{pointerEvents: 'none'}}>
+          <button className="btn-continue" style={{ cursor: 'pointer', marginTop: 'auto' }}>
             {progress > 0 ? 'Continue Learning' : 'Start Subject'}
           </button>
         </div>
       ) : (
-        <div className="locked-overlay">
+        <div className="locked-overlay" style={{ marginTop: 'auto', textAlign: 'center' }}>
           <span>🔒 LOCKED</span>
-          <p style={{fontSize: '0.85rem'}}>Complete previous modules to unlock</p>
+          <p style={{ fontSize: '0.85rem', color: '#94a3b8' }}>Complete previous modules to unlock</p>
         </div>
       )}
     </div>

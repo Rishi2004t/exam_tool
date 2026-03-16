@@ -8,7 +8,7 @@ const TestPage = () => {
   
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [timeLeft, setTimeLeft] = useState(1200); // 20 mins
+  const [timeLeft, setTimeLeft] = useState(1800); // 30 mins
 
   // Find subject and unit
   let currentUnit = null;

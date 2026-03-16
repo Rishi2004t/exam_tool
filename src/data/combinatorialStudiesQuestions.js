@@ -1,63 +1,99 @@
 const combinatorialStudiesQuestions = {
   'unit-os': [
-    {
-      id: 1,
-      text: "What is the primary purpose of an Operating System?",
-      options: ["Network connectivity", "Hardware resource management", "Word processing", "Designing graphics"],
-      answer: 1
-    },
-    {
-      id: 2,
-      text: "Which of the following is NOT a type of kernel?",
-      options: ["Monolithic", "Microkernel", "Macrokernel", "Hybrid"],
-      answer: 2
-    },
-    {
-      id: 3,
-      text: "What does 'SPOOLING' stand for in OS?",
-      options: ["Sequential Peripheral Operations On-Line", "Simultaneous Peripheral Operations On-Line", "Short-term Peripheral Output Linked Input", "Standard Processing On-Line Input"],
-      answer: 1
-    }
+    { id: 1, text: "What is the primary purpose of an Operating System?", options: ["Network connectivity", "Hardware resource management", "Word processing", "Designing graphics"], answer: 1 },
+    { id: 2, text: "Which of the following is NOT a type of kernel?", options: ["Monolithic", "Microkernel", "Macrokernel", "Hybrid"], answer: 2 },
+    { id: 3, text: "What does 'SPOOLING' stand for in OS?", options: ["Sequential Peripheral Operations On-Line", "Simultaneous Peripheral Operations On-Line", "Short-term Peripheral Output Linked Input", "Standard Processing On-Line Input"], answer: 1 },
+    { id: 4, text: "Which scheduler selects processes from the pool and loads them into memory for execution?", options: ["Long-term scheduler", "Short-term scheduler", "Medium-term scheduler", "Dispatcher"], answer: 0 },
+    { id: 5, text: "What is a 'Process Control Block' (PCB)?", options: ["A block of memory for data", "A data structure that contains process information", "A part of direct memory access", "A type of process synchronization"], answer: 1 },
+    { id: 6, text: "In which state is a process when it is waiting for an event to occur?", options: ["Running", "Ready", "Waiting", "Terminated"], answer: 2 },
+    { id: 7, text: "What is 'Thrashing' in an operating system?", options: ["High CPU utilization", "High paging activity", "Low memory usage", "Efficient process management"], answer: 1 },
+    { id: 8, text: "Which algorithm is used for deadlock avoidance?", options: ["Round Robin", "Banker's Algorithm", "FIFO", "Shortest Job First"], answer: 1 },
+    { id: 9, text: "A critical section is a program segment:", options: ["Which should run as fast as possible", "Where shared resources are accessed", "Which is prone to errors", "Which handles user input"], answer: 1 },
+    { id: 10, text: "What is the wait time in FCFS scheduling if arrival times are same?", options: ["Zero", "Sum of burst times", "Arrival time minus burst time", "Time spent in the ready queue before execution"], answer: 3 },
+    { id: 11, text: "Virtual memory is usually implemented by:", options: ["Segmentation", "Demand paging", "Fragmentation", "Swapping"], answer: 1 },
+    { id: 12, text: "Which file system is commonly used by Windows OS?", options: ["EXT4", "NTFS", "FAT32 only", "HFS+"], answer: 1 },
+    { id: 13, text: "A process can be terminated by:", options: ["Normal completion", "Error or fault", "Killed by another process", "All of the above"], answer: 3 },
+    { id: 14, text: "What is a 'Shell' in OS?", options: ["The core of the OS", "A hardware component", "A command-line interpreter", "A storage device"], answer: 2 },
+    { id: 15, text: "Paging helps to avoid:", options: ["Internal fragmentation", "External fragmentation", "Both", "None"], answer: 1 },
+    { id: 16, text: "Which of these is a real-time operating system?", options: ["Windows 10", "Linux", "RTX", "macOS"], answer: 2 },
+    { id: 17, text: "What is the main advantage of a multiprogramming system?", options: ["User convenience", "CPU is never idle", "Reduced memory usage", "Faster execution of a single process"], answer: 1 },
+    { id: 18, text: "A 'Deadlock' occurs when:", options: ["Two processes share a resource", "Processes are waiting for resources held by each other", "A process terminates unexpectedly", "The CPU enters an infinite loop"], answer: 1 },
+    { id: 19, text: "The mechanism that allows several processes to share memory is:", options: ["Multi-tasking", "Paging", "Protection", "Swapping"], answer: 1 },
+    { id: 20, text: "Device drivers are used to:", options: ["Run applications", "Control hardware devices", "Manage users", "Connect to the internet"], answer: 1 },
+    { id: 21, text: "Booting means:", options: ["Restarting the computer", "Scanning for viruses", "Compiling a program", "Installing software"], answer: 0 },
+    { id: 22, text: "Which of the following is an example of an open-source OS?", options: ["Windows", "iOS", "Linux", "macOS"], answer: 2 },
+    { id: 23, text: "What is 'Belady's Anomaly' related to?", options: ["Process synchronization", "Page replacement algorithms", "Disk scheduling", "CPU scheduling"], answer: 1 },
+    { id: 24, text: "The 'Dispatcher' is responsible for:", options: ["Selecting a process", "Context switching", "Managing memory", "Error handling"], answer: 1 },
+    { id: 25, text: "Which memory management scheme allows non-contiguous allocation?", options: ["Contiguous allocation", "Segmentation", "Paging", "Both B and C"], answer: 3 },
+    { id: 26, text: "An interrupt that is generated by software is known as:", options: ["Trap", "Trigger", "Signal", "Event"], answer: 0 },
+    { id: 27, text: "Which command in Linux is used to display current processes?", options: ["ls", "ps", "top", "both B and C"], answer: 3 },
+    { id: 28, text: "RAID stands for:", options: ["Redundant Array of Independent Disks", "Rapid Access Integrated Data", "Random Array of Interconnected Devices", "Reliable Asset of Integrated Disks"], answer: 0 },
+    { id: 29, text: "The 'Working Set' model of paging is based on:", options: ["Spatial locality", "Temporal locality", "Locality of reference", "Sequential execution"], answer: 2 },
+    { id: 30, text: "Which scheduling algorithm gives the minimum average waiting time?", options: ["FCFS", "SJF", "Round Robin", "Priority Scheduling"], answer: 1 }
   ],
   'unit-dbms': [
-    {
-      id: 1,
-      text: "What does DBMS stand for?",
-      options: ["Data Base Management Software", "Database Management System", "Data Binary Management System", "Database Manipulation System"],
-      answer: 1
-    },
-    {
-      id: 2,
-      text: "Which of the following is a key characteristic of a relational database?",
-      options: ["Hierarchical structure", "Data stored in tables", "No redundancy", "Fixed file size"],
-      answer: 1
-    },
-    {
-      id: 3,
-      text: "What is a 'Primary Key' in a database table?",
-      options: ["The most important data field", "A unique identifier for each record", "A field that can contain null values", "A key used for physical storage only"],
-      answer: 1
-    }
+    { id: 1, text: "What does DBMS stand for?", options: ["Data Base Management Software", "Database Management System", "Data Binary Management System", "Database Manipulation System"], answer: 1 },
+    { id: 2, text: "Which of the following is a key characteristic of a relational database?", options: ["Hierarchical structure", "Data stored in tables", "No redundancy", "Fixed file size"], answer: 1 },
+    { id: 3, text: "What is a 'Primary Key' in a database table?", options: ["The most important data field", "A unique identifier for each record", "A field that can contain null values", "A key used for physical storage only"], answer: 1 },
+    { id: 4, text: "What does SQL stand for?", options: ["Structured Question Language", "Structured Query Language", "Simplified Query Logic", "Systematic Query List"], answer: 1 },
+    { id: 5, text: "Which of the following is an example of a NoSQL database?", options: ["MySQL", "PostgreSQL", "MongoDB", "Oracle"], answer: 2 },
+    { id: 6, text: "The ACID properties in DBMS are:", options: ["Atomicity, Consistency, Isolation, Durability", "Accuracy, Clarity, Integrity, Delivery", "Access, Control, Internal, Data", "Amount, Cost, Interest, Debt"], answer: 0 },
+    { id: 7, text: "What is 'Normalization' in databases?", options: ["Moving data to the cloud", "Organizing data to reduce redundancy", "Converting data to text format", "Merging two databases"], answer: 1 },
+    { id: 8, text: "Which SQL command is used to delete all rows from a table without deleting the table itself?", options: ["DROP", "DELETE", "TRUNCATE", "REMOVE"], answer: 2 },
+    { id: 9, text: "A 'Foreign Key' is used to:", options: ["Identify a row uniquely", "Link two tables together", "Encrypted data", "Store binary files"], answer: 1 },
+    { id: 10, text: "What is a 'Tuple' in relational algebra?", options: ["A column", "A row", "A table", "A database"], answer: 1 },
+    { id: 11, text: "The 'Grant' command in SQL is used for:", options: ["Searching data", "Providing permissions", "Modifying structure", "Inserting data"], answer: 1 },
+    { id: 12, text: "Which level of data abstraction describes how data is actually stored?", options: ["Physical level", "Logical level", "View level", "External level"], answer: 0 },
+    { id: 13, text: "A 'View' in SQL is:", options: ["A physical table", "A virtual table", "A deleted table", "A backup"], answer: 1 },
+    { id: 14, text: "What is 1NF (First Normal Form)?", options: ["Every attribute is atomic", "No partial dependencies", "No transitive dependencies", "Multi-valued dependencies removed"], answer: 0 },
+    { id: 15, text: "Which operator is used for pattern matching in SQL?", options: ["MATCH", "LIKE", "SEARCH", "WHERE"], answer: 1 },
+    { id: 16, text: "Aggregate functions in SQL include:", options: ["COUNT, SUM, AVG", "SELECT, FROM, WHERE", "UPDATE, DELETE", "JOIN, UNION"], answer: 0 },
+    { id: 17, text: "What is 'Data Redundancy'?", options: ["Securing data", "Duplication of data", "Data loss", "Data encryption"], answer: 1 },
+    { id: 18, text: "Which join returns all rows when there is a match in one of the tables?", options: ["Inner Join", "Outer Join", "Self Join", "Cross Join"], answer: 1 },
+    { id: 19, text: "The 'Group By' clause is used for:", options: ["Sorting data", "Filtering data", "Grouping identical data into summary rows", "Joining tables"], answer: 2 },
+    { id: 20, text: "What is a 'Transaction'?", options: ["A single SQL query", "A logical unit of database processing", "A user login", "Data backup"], answer: 1 },
+    { id: 21, text: "The 'Rollback' command is used to:", options: ["Save changes permanently", "Undo the current transaction", "Delete a table", "Restart the server"], answer: 1 },
+    { id: 22, text: "A database index is used to:", options: ["Slow down queries", "Improve speed of data retrieval", "Protect data", "Link tables"], answer: 1 },
+    { id: 23, text: "What is an ER Diagram?", options: ["A coding layout", "A visual representation of data entities and relationships", "A flow chart", "A network map"], answer: 1 },
+    { id: 24, text: "Cardinality in an ER model refers to:", options: ["Number of entities", "Number of relationships between entities", "Logical constraints", "Hardware requirements"], answer: 1 },
+    { id: 25, text: "Which data model uses a tree-like structure?", options: ["Relational", "Network", "Hierarchical", "Object-oriented"], answer: 2 },
+    { id: 26, text: "What is a 'Stored Procedure'?", options: ["A data backup", "A set of SQL statements that can be saved and reused", "A physical storage location", "A type of database user"], answer: 1 },
+    { id: 27, text: "Trigger in DBMS is:", options: ["A manual backup", "A script that automatically executes in response to events", "An error indicator", "A delete command"], answer: 1 },
+    { id: 28, text: "Data Integrity refers to:", options: ["Data speed", "Accuracy and consistency of data", "Data size", "Encryption"], answer: 1 },
+    { id: 29, text: "Which SQL clause is used to filter results of aggregate functions?", options: ["WHERE", "HAVING", "GROUP BY", "ORDER BY"], answer: 1 },
+    { id: 30, text: "A 'Self Join' is a join of a table to:", options: ["Another table", "The database", "Itself", "All other tables"], answer: 2 }
   ],
   'unit-networking': [
-    {
-      id: 1,
-      text: "What does 'IP' stand for in networking?",
-      options: ["Internal Program", "Internet Protocol", "Information Packet", "Intra Port"],
-      answer: 1
-    },
-    {
-      id: 2,
-      text: "Which layer of the OSI model is responsible for routing?",
-      options: ["Data Link Layer", "Transport Layer", "Network Layer", "Session Layer"],
-      answer: 2
-    },
-    {
-      id: 3,
-      text: "What is the main function of a DNS server?",
-      options: ["Email routing", "Assigning IP addresses", "Translating domain names to IP addresses", "Firewall protection"],
-      answer: 2
-    }
+    { id: 1, text: "What does 'IP' stand for in networking?", options: ["Internal Program", "Internet Protocol", "Information Packet", "Intra Port"], answer: 1 },
+    { id: 2, text: "Which layer of the OSI model is responsible for routing?", options: ["Data Link Layer", "Transport Layer", "Network Layer", "Session Layer"], answer: 2 },
+    { id: 3, text: "What is the main function of a DNS server?", options: ["Email routing", "Assigning IP addresses", "Translating domain names to IP addresses", "Firewall protection"], answer: 2 },
+    { id: 4, text: "What is the bit length of an IPv4 address?", options: ["32 bits", "64 bits", "128 bits", "16 bits"], answer: 0 },
+    { id: 5, text: "Which protocol is used for sending emails?", options: ["HTTP", "SMTP", "POP3", "FTP"], answer: 1 },
+    { id: 6, text: "What is the port number for HTTP by default?", options: ["21", "25", "80", "443"], answer: 2 },
+    { id: 7, text: "TCP is a ______ protocol.", options: ["Connection-oriented", "Connectionless", "Hardware-based", "Routing"], answer: 0 },
+    { id: 8, text: "Which device is used to connect two different networks?", options: ["Switch", "Router", "Hub", "Repeater"], answer: 1 },
+    { id: 9, text: "What is 'Bandwidth'?", options: ["Length of a cable", "Maximum data transfer rate", "Electrical signal strength", "Number of computers in a network"], answer: 1 },
+    { id: 10, text: "LAN stands for:", options: ["Local Area Network", "Logically Assigned Network", "Large Area Node", "Light Access Network"], answer: 0 },
+    { id: 11, text: "Which topology uses a central hub?", options: ["Bus", "Star", "Ring", "Mesh"], answer: 1 },
+    { id: 12, text: "MAC address stands for:", options: ["Multiple Access Control", "Media Access Control", "Main Accessory Circuit", "Memory Allocation Code"], answer: 1 },
+    { id: 13, text: "The length of an IPv6 address is:", options: ["32 bits", "64 bits", "128 bits", "256 bits"], answer: 2 },
+    { id: 14, text: "Which layer of OSI model provides encryption?", options: ["Physical", "Network", "Presentation", "Application"], answer: 2 },
+    { id: 15, text: "What is 'Ping' used for?", options: ["To delete files", "To test connectivity between two hosts", "To download software", "To send an email"], answer: 1 },
+    { id: 16, text: "A 'Firewall' is used for:", options: ["Speeding up the internet", "Network security", "Data storage", "Connecting cables"], answer: 1 },
+    { id: 17, text: "Which protocol is used to fetch web pages?", options: ["FTP", "HTTP", "SNMP", "SSH"], answer: 1 },
+    { id: 18, text: "VPN stands for:", options: ["Virtual Private Network", "Variable Path Node", "Verified Public Network", "Visual Process Node"], answer: 0 },
+    { id: 19, text: "The Data Link Layer is divided into two sublayers: LLC and ______.", options: ["MAC", "TCP", "UDP", "IP"], answer: 0 },
+    { id: 20, text: "Which protocol automatically assigns IP addresses?", options: ["DNS", "DHCP", "ARP", "ICMP"], answer: 1 },
+    { id: 21, text: "The fastest transmission medium is:", options: ["Coaxial cable", "Fiber-optic cable", "Copper wire", "Infrared"], answer: 1 },
+    { id: 22, text: "What is a 'Subnet Mask'?", options: ["A password", "A way to identify the network and host portions of an IP", "A type of router", "An encryption key"], answer: 1 },
+    { id: 23, text: "WWW stands for:", options: ["World Wide Web", "World Web Works", "Wide World Wired", "Website World Wide"], answer: 0 },
+    { id: 24, text: "The 'Physical Layer' handles:", options: ["Process-to-process delivery", "End-to-end delivery", "Bit synchronization and physical medium", "Logical addressing"], answer: 2 },
+    { id: 25, text: "FTP stands for:", options: ["File Transfer Protocol", "Fast Transmission Program", "Formal Typing Process", "Function Tracker Part"], answer: 0 },
+    { id: 26, text: "Which device operates at the Physical Layer?", options: ["Bridge", "Switch", "Hub", "Router"], answer: 2 },
+    { id: 27, text: "What is the function of a 'Switch'?", options: ["To amplify signals", "To connect devices on a single network and route data based on MAC", "To connect to the internet", "To provide security"], answer: 1 },
+    { id: 28, text: "ARP stands for:", options: ["Address Resolution Protocol", "Advanced Routing Program", "Automatic Reset Path", "Asset Resource Process"], answer: 0 },
+    { id: 29, text: "UDP stands for:", options: ["User Data Process", "Universal Driver Program", "User Datagram Protocol", "Unified Data Path"], answer: 2 },
+    { id: 30, text: "Which protocol is used for remote login?", options: ["HTTP", "SSH", "SMTP", "DNS"], answer: 1 }
   ]
 };
 
