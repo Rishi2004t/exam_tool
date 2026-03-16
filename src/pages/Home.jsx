@@ -140,13 +140,99 @@ const SubjectCard = ({ subject, index }) => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
+  const completedUnits = JSON.parse(sessionStorage.getItem('edqualis-completed-units') || '[]');
+  
+  // Calculate Stats
+  const totalSubjects = subjectsData.filter(s => !s.locked).length;
+  const totalUnits = subjectsData.reduce((acc, sub) => acc + sub.units.length, 0);
+  
+  // Actually counting questions from the imported modules for accurate total
+  const totalQuestions = subjectsData.reduce((acc, sub) => {
+    return acc + sub.units.reduce((uAcc, unit) => uAcc + unit.questions.length, 0);
+  }, 0);
+
+  // Find Continue Learning (First subject with progress < 100 and > 0)
+  const lastActiveSubject = subjectsData.find(s => {
+    if (s.locked || s.units.length === 0) return false;
+    const sUnits = s.units.map(u => u.id);
+    const completed = sUnits.filter(id => completedUnits.includes(id)).length;
+    return completed > 0 && completed < sUnits.length;
+  });
+
   return (
     <Layout>
-      <h1 className="page-title">My Learning Path</h1>
-      <div className="dashboard-grid">
-        {subjectsData.map((subject, index) => (
-          <SubjectCard key={subject.id} subject={subject} index={index} />
-        ))}
+      <div className="dashboard-section animate-in">
+        <div className="welcome-banner">
+          <h1>Welcome back, Student!</h1>
+          <p>Continue your learning journey by completing units and practicing MCQs. Your progress is looking great!</p>
+        </div>
+      </div>
+
+      <div className="stats-grid animate-in" style={{ animationDelay: '0.1s' }}>
+        <div className="stat-card">
+          <div className="stat-icon">📚</div>
+          <div className="stat-info">
+            <h2>{totalSubjects}</h2>
+            <span>Subjects Available</span>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon">🎯</div>
+          <div className="stat-info">
+            <h2>{completedUnits.length} / {totalUnits}</h2>
+            <span>Units Completed</span>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon">📝</div>
+          <div className="stat-info">
+            <h2>{totalQuestions}</h2>
+            <span>MCQ Questions</span>
+          </div>
+        </div>
+      </div>
+
+      {lastActiveSubject && (
+        <div className="dashboard-section animate-in" style={{ animationDelay: '0.2s' }}>
+          <div className="section-header">
+            <h2 className="section-title"><span>⏳</span> Continue Learning</h2>
+          </div>
+          <div style={{ maxWidth: '400px' }}>
+            <SubjectCard subject={lastActiveSubject} index={0} />
+          </div>
+        </div>
+      )}
+
+      <div className="dashboard-section animate-in" style={{ animationDelay: '0.3s' }}>
+        <div className="section-header">
+          <h2 className="section-title"><span>📂</span> Study Materials</h2>
+        </div>
+        <div className="shortcut-grid">
+          <div className="shortcut-card" onClick={() => navigate('/subject/industrial-ethics')}>
+            <i>📄</i>
+            <span>Download Notes</span>
+          </div>
+          <div className="shortcut-card" onClick={() => navigate('/subject/combinatorial-studies')}>
+            <i>📊</i>
+            <span>Download PPT</span>
+          </div>
+          <div className="shortcut-card" onClick={() => navigate('/')}>
+            <i>🔗</i>
+            <span>View Resources</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="dashboard-section animate-in" style={{ animationDelay: '0.4s' }}>
+        <div className="section-header">
+          <h2 className="section-title"><span>🚀</span> Available Subjects</h2>
+        </div>
+        <div className="dashboard-grid">
+          {subjectsData.map((subject, index) => (
+            <SubjectCard key={subject.id} subject={subject} index={index} />
+          ))}
+        </div>
       </div>
     </Layout>
   );
