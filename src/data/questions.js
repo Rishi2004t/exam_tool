@@ -154,9 +154,9 @@ export const subjectsData = [
       }
     ],
     studyMaterials: [
-      { id: 'cs-n1', title: 'Unit 1: Operating Systems', description: 'Fundamental concepts of OS, kernels, and process management.', fileUrl: '/resources/combinatorial/unit1-os.pdf' },
-      { id: 'cs-n2', title: 'Unit 2: DBMS Notes', description: 'Relational databases, SQL, and normalization techniques.', fileUrl: '/resources/combinatorial/unit2-dbms.pdf' },
-      { id: 'cs-n3', title: 'Unit 3: Networking', description: 'OSI model, TCP/IP, and network security essentials.', fileUrl: '/resources/combinatorial/unit3-networking.pdf' }
+      { id: 'cs-n1', title: 'Unit 1: Operating Systems', description: 'Fundamental concepts of OS, kernels, and process management.', fileUrl: '/resources/combinatorial/Operating-System-Handwritten-Notes.pdf.pdf' },
+      { id: 'cs-n2', title: 'Unit 2: DBMS Notes', description: 'Relational databases, SQL, and normalization techniques.', fileUrl: '/resources/combinatorial/DBMS Handwritten Notes.pdf.pdf' },
+      { id: 'cs-n3', title: 'Unit 3: Networking', description: 'OSI model, TCP/IP, and network security essentials.', fileUrl: '/resources/combinatorial/computer network handwritten notes.pdf' }
     ],
     pptMaterials: [
       { id: 'cs-p1', title: 'Unit 1 PPT: OS Concepts', description: 'Slides covering CPU scheduling, memory management and deadlocks.', fileUrl: '/resources/ppt/combinatorial/unit1.pptx' },
