@@ -178,6 +178,39 @@ const Home = () => {
 
           <div className="dashboard-section">
             <div className="section-header">
+              <h2 className="section-title"><span>⚡</span> Quick Actions</h2>
+            </div>
+            <div className="feature-cards-grid">
+              <div className="feature-card pdf-feature">
+                <div className="feature-card-content">
+                  <div className="feature-icon">📄</div>
+                  <div className="feature-text">
+                    <h3>PDF Materials</h3>
+                    <p>Access study notes and downloadable PDFs and PPTs for each subject.</p>
+                  </div>
+                </div>
+                <button className="feature-btn" onClick={() => navigate('/subjects')}>
+                  View Materials
+                </button>
+              </div>
+
+              <div className="feature-card mcq-feature">
+                <div className="feature-card-content">
+                  <div className="feature-icon">📝</div>
+                  <div className="feature-text">
+                    <h3>MCQ Practice</h3>
+                    <p>Practice unit-wise MCQ tests for each subject to improve your scores.</p>
+                  </div>
+                </div>
+                <button className="feature-btn" onClick={() => navigate('/subjects')}>
+                  Start Practice
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="dashboard-section">
+            <div className="section-header">
               <h2 className="section-title"><span>🚀</span> Available Subjects</h2>
             </div>
             <div className="dashboard-grid">
