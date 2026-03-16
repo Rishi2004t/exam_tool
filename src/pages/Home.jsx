@@ -143,6 +143,14 @@ const Home = () => {
   const navigate = useNavigate();
   const completedUnits = JSON.parse(sessionStorage.getItem('edqualis-completed-units') || '[]');
   
+  // QOTD State
+  const [qotdAnswerRevealed, setQotdAnswerRevealed] = useState(false);
+  const qotd = {
+    question: "Which of the following describes 'integrity' in professional ethics?",
+    options: ["Being honest and having strong moral principles", "Maximizing profit at all costs", "Following orders blindly", "Avoiding all conflicts"],
+    correctAnswer: 0
+  };
+  
   // Calculate Stats
   const totalSubjects = subjectsData.filter(s => !s.locked).length;
   const totalUnits = subjectsData.reduce((acc, sub) => acc + sub.units.length, 0);
@@ -174,6 +182,10 @@ const Home = () => {
           <div className="welcome-banner">
             <h1>Welcome back, Student!</h1>
             <p>Continue your learning journey by completing units and practicing MCQs. Your progress is looking great!</p>
+          </div>
+
+          <div className="motivation-banner">
+            <h3>"Consistency beats intensity. Practice a little every day."</h3>
           </div>
 
           <div className="dashboard-section">
@@ -309,6 +321,51 @@ const Home = () => {
                   <span className="stat-label">Accuracy</span>
                   <span className="stat-value">72%</span>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="daily-widgets-grid">
+            {/* Daily Practice */}
+            <div className="dashboard-section" style={{marginBottom: 0}}>
+              <div className="section-header">
+                <h2 className="section-title"><span>🎯</span> Daily Practice</h2>
+              </div>
+              <div className="widget-card daily-practice-card">
+                <div className="widget-icon">⭐</div>
+                <div className="widget-info">
+                  <h4>Today's Goal: Practice 10 Questions</h4>
+                  <div className="progress-text">Progress: 4 / 10 Questions</div>
+                  <div className="progress-track" style={{ height: '10px', background: 'rgba(255,255,255,0.1)', borderRadius: '10px', overflow: 'hidden', marginTop: '8px' }}>
+                    <div className="progress-thumb" style={{ width: '40%', height: '100%', background: 'linear-gradient(90deg, #3b82f6, #60a5fa)', transition: 'width 1s ease' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Question of the Day */}
+            <div className="dashboard-section" style={{marginBottom: 0}}>
+              <div className="section-header">
+                <h2 className="section-title"><span>💡</span> Question of the Day</h2>
+              </div>
+              <div className="widget-card qotd-card">
+                <p className="qotd-text">{qotd.question}</p>
+                
+                {qotdAnswerRevealed && (
+                  <div className="qotd-options">
+                    {qotd.options.map((opt, idx) => (
+                      <div key={idx} className={`qotd-opt ${idx === qotd.correctAnswer ? 'correct' : 'incorrect'}`}>
+                        {opt}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {!qotdAnswerRevealed && (
+                  <button className="feature-btn reveal-btn" onClick={() => setQotdAnswerRevealed(true)}>
+                    Reveal Answer
+                  </button>
+                )}
               </div>
             </div>
           </div>
