@@ -122,11 +122,6 @@ export const subjectsData = [
       { id: 'ie-n1', title: 'Unit 1: Ethics Notes', description: 'Comprehensive notes on professional ethics and moral decision making.', fileUrl: '/resources/industrial-ethics/Unit 1.pdf' },
       { id: 'ie-n2', title: 'Unit 2: Professional Ethics', description: 'Detailed guide on intellectual property and corporate ethics.', fileUrl: '/resources/industrial-ethics/Unit 2.pdf' },
       { id: 'ie-n3', title: 'Unit 3: CSR & Startups', description: 'Notes on corporate social responsibility and startup policies in India.', fileUrl: '/resources/industrial-ethics/Unit 3.pdf' }
-    ],
-    pptMaterials: [
-      { id: 'ie-p1', title: 'Industrial Ethics – Unit 1 PPT', description: 'Presentation slides covering introduction to ethics and moral values.', fileUrl: '/resources/ppt/industrial-ethics/ethics-unit1.pptx' },
-      { id: 'ie-p2', title: 'Unit 2 PPT: Professionalism', description: 'Slides on professional responsibilities and ethical codes.', fileUrl: '/resources/ppt/industrial-ethics/unit2.pptx' },
-      { id: 'ie-p3', title: 'Unit 3 PPT: CSR Policy', description: 'Presentation on Corporate Social Responsibility and Startup India.', fileUrl: '/resources/ppt/industrial-ethics/unit3.pptx' }
     ]
   },
   {
@@ -157,11 +152,6 @@ export const subjectsData = [
       { id: 'cs-n1', title: 'Unit 1: Operating Systems', description: 'Fundamental concepts of OS, kernels, and process management.', fileUrl: '/resources/combinatorial/Operating-System-Handwritten-Notes.pdf.pdf' },
       { id: 'cs-n2', title: 'Unit 2: DBMS Notes', description: 'Relational databases, SQL, and normalization techniques.', fileUrl: '/resources/combinatorial/DBMS Handwritten Notes.pdf.pdf' },
       { id: 'cs-n3', title: 'Unit 3: Networking', description: 'OSI model, TCP/IP, and network security essentials.', fileUrl: '/resources/combinatorial/computer network handwritten notes.pdf' }
-    ],
-    pptMaterials: [
-      { id: 'cs-p1', title: 'Unit 1 PPT: OS Concepts', description: 'Slides covering CPU scheduling, memory management and deadlocks.', fileUrl: '/resources/ppt/combinatorial/unit1.pptx' },
-      { id: 'cs-p2', title: 'Unit 2 PPT: DBMS Design', description: 'Presentation on schema design, SQL queries and concurrency.', fileUrl: '/resources/ppt/combinatorial/unit2.pptx' },
-      { id: 'cs-p3', title: 'Unit 3 PPT: Networking', description: 'Detailed slides on network layers, protocols and security.', fileUrl: '/resources/ppt/combinatorial/unit3.pptx' }
     ]
   },
   { id: 'data-structures', title: 'Data Structures', locked: true, units: [] },
