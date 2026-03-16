@@ -162,77 +162,85 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="dashboard-section animate-in">
-        <div className="welcome-banner">
-          <h1>Welcome back, Student!</h1>
-          <p>Continue your learning journey by completing units and practicing MCQs. Your progress is looking great!</p>
-        </div>
-      </div>
+      <div className="home-dashboard-layout animate-in">
+        
+        {/* MAIN CONTENT AREA */}
+        <div className="main-content-column">
+          <div className="dashboard-hero-header">
+            <h1 className="main-title">EdQualis Dashboard</h1>
+            <p className="sub-title">Your Academic Success Partner</p>
+          </div>
 
-      <div className="stats-grid animate-in" style={{ animationDelay: '0.1s' }}>
-        <div className="stat-card">
-          <div className="stat-icon">📚</div>
-          <div className="stat-info">
-            <h2>{totalSubjects}</h2>
-            <span>Subjects Available</span>
+          <div className="welcome-banner">
+            <h1>Welcome back, Student!</h1>
+            <p>Continue your learning journey by completing units and practicing MCQs. Your progress is looking great!</p>
           </div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-icon">🎯</div>
-          <div className="stat-info">
-            <h2>{completedUnits.length} / {totalUnits}</h2>
-            <span>Units Completed</span>
-          </div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-icon">📝</div>
-          <div className="stat-info">
-            <h2>{totalQuestions}</h2>
-            <span>MCQ Questions</span>
-          </div>
-        </div>
-      </div>
 
-      {lastActiveSubject && (
-        <div className="dashboard-section animate-in" style={{ animationDelay: '0.2s' }}>
-          <div className="section-header">
-            <h2 className="section-title"><span>⏳</span> Continue Learning</h2>
-          </div>
-          <div style={{ maxWidth: '400px' }}>
-            <SubjectCard subject={lastActiveSubject} index={0} />
+          <div className="dashboard-section">
+            <div className="section-header">
+              <h2 className="section-title"><span>🚀</span> Available Subjects</h2>
+            </div>
+            <div className="dashboard-grid">
+              {subjectsData.map((subject, index) => (
+                <SubjectCard key={subject.id} subject={subject} index={index} />
+              ))}
+            </div>
           </div>
         </div>
-      )}
 
-      <div className="dashboard-section animate-in" style={{ animationDelay: '0.3s' }}>
-        <div className="section-header">
-          <h2 className="section-title"><span>📂</span> Study Materials</h2>
-        </div>
-        <div className="shortcut-grid">
-          <div className="shortcut-card" onClick={() => navigate('/subject/industrial-ethics')}>
-            <i>📄</i>
-            <span>Download Notes</span>
+        {/* OPTIONAL RIGHT PANEL */}
+        <div className="right-panel-column">
+          
+          <div className="right-panel-section">
+            <h3 className="right-panel-title">Quick Stats</h3>
+            <div className="stats-vertical-grid">
+              <div className="stat-card stat-card-small">
+                <div className="stat-icon">📚</div>
+                <div className="stat-info">
+                  <h2>{totalSubjects}</h2>
+                  <span>Subjects</span>
+                </div>
+              </div>
+              <div className="stat-card stat-card-small">
+                <div className="stat-icon">🎯</div>
+                <div className="stat-info">
+                  <h2>{completedUnits.length} / {totalUnits}</h2>
+                  <span>Units Done</span>
+                </div>
+              </div>
+              <div className="stat-card stat-card-small">
+                <div className="stat-icon">📝</div>
+                <div className="stat-info">
+                  <h2>{totalQuestions}</h2>
+                  <span>Questions</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="shortcut-card" onClick={() => navigate('/subject/combinatorial-studies')}>
-            <i>📊</i>
-            <span>Download PPT</span>
-          </div>
-          <div className="shortcut-card" onClick={() => navigate('/')}>
-            <i>🔗</i>
-            <span>View Resources</span>
-          </div>
-        </div>
-      </div>
 
-      <div className="dashboard-section animate-in" style={{ animationDelay: '0.4s' }}>
-        <div className="section-header">
-          <h2 className="section-title"><span>🚀</span> Available Subjects</h2>
+          {lastActiveSubject && (
+            <div className="right-panel-section" style={{ marginTop: '32px' }}>
+              <h3 className="right-panel-title">Continue Learning</h3>
+              <SubjectCard subject={lastActiveSubject} index={0} />
+            </div>
+          )}
+
+          <div className="right-panel-section" style={{ marginTop: '32px' }}>
+            <h3 className="right-panel-title">Study Resources</h3>
+            <div className="shortcut-vertical">
+              <div className="shortcut-card" onClick={() => navigate('/subject/industrial-ethics')}>
+                <i>📄</i>
+                <span>Download Notes</span>
+              </div>
+              <div className="shortcut-card" onClick={() => navigate('/subject/combinatorial-studies')}>
+                <i>📊</i>
+                <span>Download PPT</span>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div className="dashboard-grid">
-          {subjectsData.map((subject, index) => (
-            <SubjectCard key={subject.id} subject={subject} index={index} />
-          ))}
-        </div>
+
       </div>
     </Layout>
   );
