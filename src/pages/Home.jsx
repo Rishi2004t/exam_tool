@@ -225,6 +225,47 @@ const Home = () => {
         <div className="right-panel-column">
           
           <div className="right-panel-section">
+            <h3 className="right-panel-title">Quick Actions</h3>
+            <div className="action-buttons-vertical">
+              <button className="panel-action-btn start-test-btn" onClick={() => navigate('/subjects')}>
+                <span className="btn-icon">▶️</span>
+                <span>Start New Test</span>
+              </button>
+              <button className="panel-action-btn view-results-btn" onClick={() => navigate('/result')}>
+                <span className="btn-icon">📊</span>
+                <span>View Results</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="right-panel-section" style={{ marginTop: '32px' }}>
+            <h3 className="right-panel-title">Notifications</h3>
+            <div className="notifications-list">
+              <div className="notification-card">
+                <div className="notif-icon" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6' }}>📅</div>
+                <div className="notif-content">
+                  <h4>Upcoming Exam</h4>
+                  <p>Operating Systems unit test is scheduled for tomorrow.</p>
+                </div>
+              </div>
+              <div className="notification-card">
+                <div className="notif-icon" style={{ background: 'rgba(34, 197, 94, 0.1)', color: '#22c55e' }}>🏆</div>
+                <div className="notif-content">
+                  <h4>High Score Achieved</h4>
+                  <p>You scored 90% in Industrial Ethics Unit 1.</p>
+                </div>
+              </div>
+              <div className="notification-card">
+                <div className="notif-icon" style={{ background: 'rgba(168, 85, 247, 0.1)', color: '#a855f7' }}>📚</div>
+                <div className="notif-content">
+                  <h4>New Notes Available</h4>
+                  <p>Combinatorial Studies notes have been updated.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="right-panel-section" style={{ marginTop: '32px' }}>
             <h3 className="right-panel-title">Quick Stats</h3>
             <div className="stats-vertical-grid">
               <div className="stat-card stat-card-small">
