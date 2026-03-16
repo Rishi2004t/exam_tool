@@ -124,7 +124,7 @@ export const subjectsData = [
       { id: 'ie-n3', title: 'Unit 3: CSR & Startups', description: 'Notes on corporate social responsibility and startup policies in India.', fileUrl: '/resources/industrial-ethics/unit3-notes.pdf' }
     ],
     pptMaterials: [
-      { id: 'ie-p1', title: 'Unit 1 PPT: Ethics Intro', description: 'Presentation slides covering introduction to ethics and moral values.', fileUrl: '/resources/ppt/industrial-ethics/unit1.pptx' },
+      { id: 'ie-p1', title: 'Industrial Ethics – Unit 1 PPT', description: 'Presentation slides covering introduction to ethics and moral values.', fileUrl: '/resources/ppt/industrial-ethics/ethics-unit1.pptx' },
       { id: 'ie-p2', title: 'Unit 2 PPT: Professionalism', description: 'Slides on professional responsibilities and ethical codes.', fileUrl: '/resources/ppt/industrial-ethics/unit2.pptx' },
       { id: 'ie-p3', title: 'Unit 3 PPT: CSR Policy', description: 'Presentation on Corporate Social Responsibility and Startup India.', fileUrl: '/resources/ppt/industrial-ethics/unit3.pptx' }
     ]

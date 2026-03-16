@@ -72,6 +72,7 @@ const UnitSelection = () => {
         </h2>
         
         <div className="materials-grid">
+          {/* Render PDF Materials */}
           {subject.studyMaterials && subject.studyMaterials.map((material, idx) => (
             <div key={material.id} className="note-card animate-in" style={{ animationDelay: `${(idx + subject.units.length) * 0.1}s` }}>
               <div className="pdf-icon">📄</div>
@@ -83,15 +84,8 @@ const UnitSelection = () => {
               </a>
             </div>
           ))}
-        </div>
-      </div>
-      <div style={{ marginTop: '60px', marginBottom: '40px' }}>
-        <h2 className="section-title" style={{ color: 'white', marginBottom: '32px', fontSize: '2rem', display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span style={{ padding: '8px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '12px', fontSize: '1.5rem' }}>📊</span>
-          PowerPoint Slides
-        </h2>
-        
-        <div className="materials-grid">
+
+          {/* Render PPT Materials */}
           {subject.pptMaterials && subject.pptMaterials.map((ppt, idx) => (
             <div key={ppt.id} className="note-card animate-in" style={{ 
               animationDelay: `${(idx + subject.units.length + (subject.studyMaterials?.length || 0)) * 0.1}s`,
@@ -101,7 +95,7 @@ const UnitSelection = () => {
               <h3>{ppt.title}</h3>
               <p>{ppt.description}</p>
               <a href={ppt.fileUrl} download className="btn-download" style={{ background: '#f97316' }}>
-                <span>Download PPT</span>
+                <span>Download Presentation</span>
                 <span style={{ marginLeft: '8px' }}>📥</span>
               </a>
             </div>
