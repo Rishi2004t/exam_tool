@@ -211,6 +211,110 @@ const Home = () => {
 
           <div className="dashboard-section">
             <div className="section-header">
+              <h2 className="section-title"><span>📈</span> My Progress</h2>
+            </div>
+            
+            <div className="analytics-container">
+              {/* Line Chart Section */}
+              <div className="analytics-card chart-card">
+                <div className="chart-header">
+                  <h3>Learning Activity</h3>
+                  <span>Last 4 Weeks</span>
+                </div>
+                
+                <div className="simple-line-chart">
+                  <div className="chart-y-axis">
+                    <span>30</span>
+                    <span>20</span>
+                    <span>10</span>
+                    <span>0</span>
+                  </div>
+                  <div className="chart-graph-area">
+                    <svg viewBox="0 0 400 200" className="chart-svg">
+                      <defs>
+                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="rgba(59, 130, 246, 0.4)" />
+                          <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M 0,160 L 133,100 L 266,50 L 400,0 L 400,200 L 0,200 Z" fill="url(#chartGradient)" />
+                      <polyline points="0,160 133,100 266,50 400,0" fill="none" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                      
+                      {/* Data Points */}
+                      <circle cx="0" cy="160" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
+                      <circle cx="133" cy="100" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
+                      <circle cx="266" cy="50" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
+                      <circle cx="400" cy="0" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
+                    </svg>
+                  </div>
+                  <div className="chart-x-axis">
+                    <span>W1</span>
+                    <span>W2</span>
+                    <span>W3</span>
+                    <span>W4</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Circular Progress Section */}
+              <div className="analytics-card progress-circle-card">
+                <h3>Overall Progress</h3>
+                <div className="analytics-circle-wrapper">
+                  <svg viewBox="0 0 160 160" className="analytics-circle-svg">
+                    <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(255, 255, 255, 0.1)" strokeWidth="12" />
+                    <circle 
+                      cx="80" cy="80" r="70" 
+                      fill="none" 
+                      stroke="url(#progressGradient)" 
+                      strokeWidth="12" 
+                      strokeLinecap="round" 
+                      strokeDasharray="439.8" 
+                      strokeDashoffset="219.9" /* Shows 50% */
+                      style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', transition: 'stroke-dashoffset 1.5s ease' }}
+                    />
+                    <defs>
+                      <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#8b5cf6" />
+                        <stop offset="100%" stopColor="#3b82f6" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="circle-inner-text">
+                    <span className="percent">50%</span>
+                    <span className="label">Completed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats Summary */}
+            <div className="analytics-stats-grid">
+              <div className="analytics-stat-card">
+                <div className="stat-icon-wrapper blue">📋</div>
+                <div className="stat-details">
+                  <span className="stat-label">Tests Attempted</span>
+                  <span className="stat-value">12</span>
+                </div>
+              </div>
+              <div className="analytics-stat-card">
+                <div className="stat-icon-wrapper purple">📝</div>
+                <div className="stat-details">
+                  <span className="stat-label">Questions Answered</span>
+                  <span className="stat-value">180</span>
+                </div>
+              </div>
+              <div className="analytics-stat-card">
+                <div className="stat-icon-wrapper green">🎯</div>
+                <div className="stat-details">
+                  <span className="stat-label">Accuracy</span>
+                  <span className="stat-value">72%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="dashboard-section">
+            <div className="section-header">
               <h2 className="section-title"><span>🚀</span> Available Subjects</h2>
             </div>
             <div className="dashboard-grid">
