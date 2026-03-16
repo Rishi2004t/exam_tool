@@ -85,6 +85,29 @@ const UnitSelection = () => {
           ))}
         </div>
       </div>
+      <div style={{ marginTop: '60px', marginBottom: '40px' }}>
+        <h2 className="section-title" style={{ color: 'white', marginBottom: '32px', fontSize: '2rem', display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <span style={{ padding: '8px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '12px', fontSize: '1.5rem' }}>📊</span>
+          PowerPoint Slides
+        </h2>
+        
+        <div className="materials-grid">
+          {subject.pptMaterials && subject.pptMaterials.map((ppt, idx) => (
+            <div key={ppt.id} className="note-card animate-in" style={{ 
+              animationDelay: `${(idx + subject.units.length + (subject.studyMaterials?.length || 0)) * 0.1}s`,
+              borderColor: 'rgba(249, 115, 22, 0.2)' 
+            }}>
+              <div className="pdf-icon" style={{ background: 'rgba(249, 115, 22, 0.1)', color: '#f97316' }}>📊</div>
+              <h3>{ppt.title}</h3>
+              <p>{ppt.description}</p>
+              <a href={ppt.fileUrl} download className="btn-download" style={{ background: '#f97316' }}>
+                <span>Download PPT</span>
+                <span style={{ marginLeft: '8px' }}>📥</span>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 };
