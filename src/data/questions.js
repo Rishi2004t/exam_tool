@@ -1,3 +1,5 @@
+import combinatorialStudiesQuestions from './combinatorialStudiesQuestions';
+
 export const subjectsData = [
   {
     id: 'industrial-ethics',
@@ -117,7 +119,33 @@ export const subjectsData = [
       }
     ]
   },
+  {
+    id: 'combinatorial-studies',
+    title: 'CSE357: COMBINATORIAL STUDIES',
+    locked: false,
+    units: [
+      {
+        id: 'unit-os',
+        title: 'Unit 1 – Operating Systems',
+        estimatedTime: 20,
+        questions: combinatorialStudiesQuestions['unit-os']
+      },
+      {
+        id: 'unit-dbms',
+        title: 'Unit 2 – Database Management Systems (DBMS)',
+        estimatedTime: 20,
+        questions: combinatorialStudiesQuestions['unit-dbms']
+      },
+      {
+        id: 'unit-networking',
+        title: 'Unit 3 – Computer Networking',
+        estimatedTime: 20,
+        questions: combinatorialStudiesQuestions['unit-networking']
+      }
+    ]
+  },
   { id: 'data-structures', title: 'Data Structures', locked: true, units: [] },
   { id: 'computer-networks', title: 'Computer Networks', locked: true, units: [] },
   { id: 'operating-systems', title: 'Operating Systems', locked: true, units: [] }
 ];
+

@@ -101,7 +101,7 @@ const SubjectCard = ({ subject, index }) => {
 
   const handleCardClick = () => {
     if (!subject.locked) {
-      navigate(`/unit/${subject.id}`);
+      navigate(`/subject/${subject.id}`);
     }
   };
 

@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/subjects" element={<Home />} />
+          <Route path="/subject/:subjectId" element={<UnitSelection />} />
           <Route path="/unit/:subjectId" element={<UnitSelection />} />
           <Route path="/test/:unitId" element={<TestPage />} />
           <Route path="/pretest/:unitId" element={<PreTestForm />} />
