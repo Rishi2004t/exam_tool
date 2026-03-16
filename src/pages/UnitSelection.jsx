@@ -57,6 +57,27 @@ const UnitSelection = () => {
           </div>
         ))}
       </div>
+
+      <div style={{ marginTop: '60px', marginBottom: '40px' }}>
+        <h2 className="section-title" style={{ color: 'white', marginBottom: '32px', fontSize: '2rem', display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <span style={{ padding: '8px', background: 'rgba(56, 189, 248, 0.1)', borderRadius: '12px', fontSize: '1.5rem' }}>📚</span>
+          Study Materials
+        </h2>
+        
+        <div className="materials-grid">
+          {subject.studyMaterials && subject.studyMaterials.map((material, idx) => (
+            <div key={material.id} className="note-card animate-in" style={{ animationDelay: `${(idx + subject.units.length) * 0.1}s` }}>
+              <div className="pdf-icon">📄</div>
+              <h3>{material.title}</h3>
+              <p>{material.description}</p>
+              <a href={material.fileUrl} download className="btn-download">
+                <span>Download PDF</span>
+                <span style={{ marginLeft: '8px' }}>📥</span>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 };
