@@ -1054,3 +1054,142 @@ body {
   box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
 }
 
+/* ============================================
+   RESULT PAGE STYLES
+   ============================================ */
+
+/* Hero score card */
+.result-hero-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Circular score indicator */
+.score-circle {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.score-svg {
+  width: 140px;
+  height: 140px;
+  transform: rotate(0deg);
+}
+
+.score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Stats grid */
+.result-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.result-stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.result-stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.result-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto 12px;
+}
+
+.result-stat-num {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.result-stat-label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Feedback card */
+.result-feedback-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 36px;
+  text-align: center;
+  border-width: 2px;
+}
+
+/* Answer review cards */
+.review-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  transition: box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .result-hero-card {
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .result-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .result-feedback-card {
+    padding: 24px;
+  }
+
+  .review-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .score-circle, .score-svg {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
