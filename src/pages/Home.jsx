@@ -82,7 +82,7 @@ export const TopHeader = ({ onToggleSidebar }) => {
           <div className="search-results-dropdown">
             {filteredSubjects.length > 0 ? (
               filteredSubjects.map(s => (
-                <div key={s.id} className="search-result-item" onClick={() => selectResult(s.id)}>
+                <div key={s.id} className="search-result-item" onMouseDown={() => selectResult(s.id)}>
                   <span className="result-icon">📚</span>
                   <span className="result-title">{s.title}</span>
                 </div>
