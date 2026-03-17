@@ -9,18 +9,45 @@ const AnimatedBackground = ({ children }) => {
     return localStorage.getItem('edqualis-theme') || 'blue';
   });
 
+  const [mode, setMode] = useState(() => {
+    return localStorage.getItem('edqualis-mode') || 'dark';
+  });
+
+  const [background, setBackground] = useState(() => {
+    return localStorage.getItem('edqualis-background') || 'blue-gradient';
+  });
+
   useEffect(() => {
     localStorage.setItem('edqualis-theme', theme);
+    localStorage.setItem('edqualis-mode', mode);
+    localStorage.setItem('edqualis-background', background);
+    
     document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-mode', mode);
+    document.documentElement.setAttribute('data-background', background);
+  }, [theme, mode, background]);
 
-  const updateTheme = (newTheme) => {
-    setTheme(newTheme);
+  const updateTheme = (newTheme) => setTheme(newTheme);
+  const updateMode = (newMode) => setMode(newMode);
+  const updateBackground = (newBg) => setBackground(newBg);
+
+  const resetSettings = () => {
+    setTheme('blue');
+    setMode('dark');
+    setBackground('blue-gradient');
+    localStorage.removeItem('edqualis-theme');
+    localStorage.removeItem('edqualis-mode');
+    localStorage.removeItem('edqualis-background');
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, updateTheme }}>
-      <div className="edqualis-bg"></div>
+    <ThemeContext.Provider value={{ 
+      theme, updateTheme, 
+      mode, updateMode, 
+      background, updateBackground,
+      resetSettings 
+    }}>
+      <div className={`edqualis-bg bg-${background}`}></div>
       {children}
     </ThemeContext.Provider>
   );

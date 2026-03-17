@@ -3,25 +3,76 @@
   /* Default Theme: Deep Blue */
   --theme-primary: #3b82f6;
   --theme-primary-soft: rgba(59, 130, 246, 0.15);
-  --theme-gradient-start: #0f172a;
-  --theme-gradient-mid: #3b0764;
-  --theme-gradient-end: #020617;
   
+  /* Mode-based variables (Default: Dark) */
+  --bg-main: #020617;
   --sidebar-bg: rgba(15, 23, 42, 0.95);
-  --header-bg: rgba(255, 255, 255, 0.7);
+  --sidebar-text: #94a3b8;
+  --sidebar-text-active: #ffffff;
   
-  --radius-xl: 24px;
-  --radius-lg: 16px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
-  
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
   
   --text-primary: #ffffff;
   --text-secondary: #94a3b8;
-  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --header-glass-bg: rgba(15, 23, 42, 0.7);
+
+  /* Background Gradient Overrides */
+  --grad-1: #0f172a;
+  --grad-2: #3b0764;
+  --grad-3: #020617;
+}
+
+[data-mode='light'] {
+  --bg-main: #f8fafc;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #64748b;
+  --sidebar-text-active: #3b82f6;
+  
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  --input-bg: #f1f5f9;
+  --header-glass-bg: rgba(255, 255, 255, 0.8);
+  
+  /* Light mode gradients are softer */
+  --grad-1: #f1f5f9;
+  --grad-2: #e0e7ff;
+  --grad-3: #f8fafc;
+}
+
+/* Background Presets */
+[data-background='purple-gradient'] {
+  --grad-1: #1e1b4b;
+  --grad-2: #4c1d95;
+  --grad-3: #0f172a;
+}
+
+[data-background='minimal-dark'] {
+  --grad-1: #020617;
+  --grad-2: #020617;
+  --grad-3: #000000;
+}
+
+[data-mode='light'][data-background='purple-gradient'] {
+  --grad-1: #f5f3ff;
+  --grad-2: #ede9fe;
+  --grad-3: #f3f4f6;
+}
+
+[data-mode='light'][data-background='minimal-dark'] {
+  --grad-1: #f8fafc;
+  --grad-2: #f1f5f9;
+  --grad-3: #e2e8f0;
 }
 
 [data-theme='purple'] {
@@ -65,9 +116,9 @@ body {
   z-index: -1;
   background: linear-gradient(
     135deg,
-    var(--theme-gradient-start) 0%,
-    var(--theme-gradient-mid) 50%,
-    var(--theme-gradient-end) 100%
+    var(--grad-1) 0%,
+    var(--grad-2) 50%,
+    var(--grad-3) 100%
   );
   background-size: 400% 400%;
   animation: gradientMove 15s ease infinite;
