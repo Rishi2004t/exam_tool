@@ -5,6 +5,7 @@ import UnitSelection from './pages/UnitSelection';
 import TestPage from './pages/TestPage';
 import ResultPage from './pages/ResultPage';
 import Settings from './pages/Settings';
+import Syllabus from './pages/Syllabus';
 import PreTestForm from './pages/PreTestForm';
 import AnimatedBackground from './components/AnimatedBackground';
 
@@ -14,6 +15,7 @@ function App() {
       <AnimatedBackground>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/syllabus" element={<Syllabus />} />
           <Route path="/subjects" element={<Home />} />
           <Route path="/subject/:subjectId" element={<UnitSelection />} />
           <Route path="/unit/:subjectId" element={<UnitSelection />} />

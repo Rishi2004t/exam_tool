@@ -2047,3 +2047,182 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Syllabus Section Styles --- */
+.syllabus-container {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.syllabus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+@media (max-width: 1024px) {
+  .syllabus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .syllabus-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.syllabus-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.syllabus-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow);
+  border-color: var(--theme-primary);
+}
+
+.syllabus-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  background: var(--theme-primary-soft);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.syllabus-info h3 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.syllabus-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.syllabus-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-view, .btn-download {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-view {
+  background: var(--theme-primary);
+  color: white;
+  border: none;
+}
+
+.btn-view:hover {
+  filter: brightness(1.1);
+}
+
+.btn-download {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--card-border);
+}
+
+.btn-download:hover {
+  background: var(--theme-primary-soft);
+  border-color: var(--theme-primary);
+}
+
+/* --- PDF Viewer Overlay --- */
+.pdf-viewer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pdf-viewer-content {
+  background: var(--bg-main);
+  width: 100%;
+  max-width: 1000px;
+  height: 90vh;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--card-border);
+}
+
+.viewer-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+}
+
+.viewer-header h3 {
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.close-viewer {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.close-viewer:hover {
+  color: var(--text-primary);
+}
+
+.iframe-container {
+  flex-grow: 1;
+  background: #525659;
+}
+
+.viewer-footer {
+  padding: 16px;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  justify-content: flex-end;
+  background: var(--card-bg);
+}

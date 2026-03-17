@@ -8,6 +8,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { name: 'Dashboard', icon: '🏠', path: '/' },
+    { name: 'Syllabus', icon: '📋', path: '/syllabus' },
     { name: 'Subjects', icon: '📚', path: '/subjects' },
     { name: 'My Results', icon: '📈', path: '/result' },
     { name: 'Settings', icon: '⚙️', path: '/settings' },
