@@ -17,6 +17,8 @@ const AnimatedBackground = ({ children }) => {
     return localStorage.getItem('edqualis-background') || 'blue-gradient';
   });
 
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(() => {
     localStorage.setItem('edqualis-theme', theme);
     localStorage.setItem('edqualis-mode', mode);
@@ -35,6 +37,7 @@ const AnimatedBackground = ({ children }) => {
     setTheme('blue');
     setMode('dark');
     setBackground('blue-gradient');
+    setSearchTerm('');
     localStorage.removeItem('edqualis-theme');
     localStorage.removeItem('edqualis-mode');
     localStorage.removeItem('edqualis-background');
@@ -45,6 +48,7 @@ const AnimatedBackground = ({ children }) => {
       theme, updateTheme, 
       mode, updateMode, 
       background, updateBackground,
+      searchTerm, setSearchTerm,
       resetSettings 
     }}>
       <div className={`edqualis-bg bg-${background}`}></div>

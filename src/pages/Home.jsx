@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTheme } from '../components/AnimatedBackground';
 import { subjectsData } from '../data/questions';
 
 export const Sidebar = ({ isOpen, onClose }) => {
@@ -42,12 +42,54 @@ export const Sidebar = ({ isOpen, onClose }) => {
 };
 
 export const TopHeader = ({ onToggleSidebar }) => {
+  const navigate = useNavigate();
+  const { searchTerm, setSearchTerm } = useTheme();
+  const [showResults, setShowResults] = useState(false);
+
+  const filteredSubjects = subjectsData.filter(s => 
+    s.title.toLowerCase().includes(searchTerm.toLowerCase())
+  ).slice(0, 5);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setShowResults(true);
+  };
+
+  const selectResult = (id) => {
+    navigate(`/subject/${id}`);
+    setSearchTerm('');
+    setShowResults(false);
+  };
+
   return (
     <div className="top-header">
       <button type="button" className="hamburger" onClick={onToggleSidebar} aria-label="Open sidebar">☰</button>
-      <div className="search-bar">
-        <span>🔍</span>
-        <input type="text" placeholder="Search..." />
+      <div className="search-bar-container" style={{ position: 'relative', flex: 1, maxWidth: '500px' }}>
+        <div className="search-bar">
+          <span>🔍</span>
+          <input 
+            type="text" 
+            placeholder="Search subjects..." 
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onFocus={() => setShowResults(true)}
+            onBlur={() => setTimeout(() => setShowResults(false), 200)}
+          />
+        </div>
+        {showResults && searchTerm && (
+          <div className="search-results-dropdown">
+            {filteredSubjects.length > 0 ? (
+              filteredSubjects.map(s => (
+                <div key={s.id} className="search-result-item" onClick={() => selectResult(s.id)}>
+                  <span className="result-icon">📚</span>
+                  <span className="result-title">{s.title}</span>
+                </div>
+              ))
+            ) : (
+              <div className="no-results-item">No subjects found</div>
+            )}
+          </div>
+        )}
       </div>
       <div className="header-actions">
         <div className="notification-icon" style={{fontSize: '1.5rem', cursor: 'pointer'}}>🔔</div>
@@ -168,6 +210,8 @@ const Home = () => {
   const totalSubjects = subjectsData.filter(s => !s.locked).length;
   const totalUnits = subjectsData.reduce((acc, sub) => acc + sub.units.length, 0);
   
+  const { searchTerm, setSearchTerm } = useTheme();
+  
   // Actually counting questions from the imported modules for accurate total
   const totalQuestionsInSystem = subjectsData.reduce((acc, sub) => {
     return acc + sub.units.reduce((uAcc, unit) => uAcc + unit.questions.length, 0);
@@ -209,6 +253,11 @@ const Home = () => {
     return completed > 0 && completed < sUnits.length;
   });
 
+  // Filter subjects based on searchTerm
+  const displaySubjects = subjectsData.filter(s => 
+    s.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Layout>
       <div className="home-dashboard-layout animate-in">
@@ -242,7 +291,7 @@ const Home = () => {
                     <p>Access study notes and downloadable PDFs and PPTs for each subject.</p>
                   </div>
                 </div>
-                <button className="feature-btn" onClick={() => navigate('/subjects')}>
+                <button className="feature-btn" onClick={() => navigate('/materials')}>
                   View Materials
                 </button>
               </div>
@@ -479,11 +528,20 @@ const Home = () => {
             <div className="section-header">
               <h2 className="section-title"><span>🚀</span> Available Subjects</h2>
             </div>
-            <div className="dashboard-grid">
-              {subjectsData.map((subject, index) => (
-                <SubjectCard key={subject.id} subject={subject} index={index} />
-              ))}
-            </div>
+            {displaySubjects.length > 0 ? (
+              <div className="dashboard-grid">
+                {displaySubjects.map((subject, index) => (
+                  <SubjectCard key={subject.id} subject={subject} index={index} />
+                ))}
+              </div>
+            ) : (
+              <div className="no-search-results">
+                <div className="no-results-icon">🔍</div>
+                <h3>No subjects found</h3>
+                <p>Try searching with a different subject name.</p>
+                <button className="btn-clear-search" onClick={() => setSearchTerm('')}>Clear Search</button>
+              </div>
+            )}
           </div>
         </div>
 
