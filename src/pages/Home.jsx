@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../components/AnimatedBackground';
 import { subjectsData } from '../data/questions';
@@ -45,6 +46,7 @@ export const TopHeader = ({ onToggleSidebar }) => {
   const navigate = useNavigate();
   const { searchTerm, setSearchTerm } = useTheme();
   const [showResults, setShowResults] = useState(false);
+  const [isInfoModalOpen, setInfoModalOpen] = useState(false);
 
   const filteredSubjects = subjectsData.filter(s => 
     s.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -92,12 +94,36 @@ export const TopHeader = ({ onToggleSidebar }) => {
         )}
       </div>
       <div className="header-actions">
+        <div 
+          className="info-icon-btn" 
+          onClick={() => setInfoModalOpen(true)}
+          title="About This Platform"
+          style={{ fontSize: '1.4rem', cursor: 'pointer', opacity: 0.8 }}
+        >
+          ℹ️
+        </div>
         <div className="notification-icon" style={{fontSize: '1.5rem', cursor: 'pointer'}}>🔔</div>
         <div className="user-profile">
           <div className="user-avatar">JD</div>
           <span className="desktop-only" style={{fontWeight: 600, marginLeft: '8px'}}>John Doe</span>
         </div>
       </div>
+
+      {isInfoModalOpen && (
+        <div className="info-modal-overlay" onClick={() => setInfoModalOpen(false)}>
+          <div className="info-modal-content" onClick={e => e.stopPropagation()}>
+            <div className="info-modal-header">
+              <h3>About This Platform</h3>
+              <button className="info-modal-close" onClick={() => setInfoModalOpen(false)}>Close ✖</button>
+            </div>
+            <div className="info-modal-body">
+              <p>This website is designed for students to practice MCQ questions, revise important concepts, and prepare for exams efficiently.</p>
+              <p>You can attempt unit-wise tests, download study materials, and track your learning progress.</p>
+              <p>Make it a habit to practice daily and strengthen your understanding step by step.</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
