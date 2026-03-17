@@ -58,13 +58,35 @@ const ResultPage = () => {
     feedbackColor = '#ef4444';
   }
 
-  // Mark unit as completed
+  // Mark unit as completed and save history
   React.useEffect(() => {
+    // 1. Update completed units (sessionStorage)
     const completedUnits = JSON.parse(sessionStorage.getItem('edqualis-completed-units') || '[]');
     if (unitId && !completedUnits.includes(unitId)) {
       sessionStorage.setItem('edqualis-completed-units', JSON.stringify([...completedUnits, unitId]));
     }
-  }, [unitId]);
+
+    // 2. Save test result to history (localStorage for persistence)
+    try {
+      const testHistory = JSON.parse(localStorage.getItem('edqualis-test-history') || '[]');
+      
+      const newResult = {
+        unitId,
+        subjectTitle,
+        unitTitle,
+        score: correct,
+        total: total,
+        accuracy,
+        timestamp: new Date().toISOString()
+      };
+
+      // Add to history and keep last 20 results for graph (adjust as needed)
+      const updatedHistory = [...testHistory, newResult];
+      localStorage.setItem('edqualis-test-history', JSON.stringify(updatedHistory));
+    } catch (e) {
+      console.error("Failed to save test history", e);
+    }
+  }, [unitId, correct, total, accuracy, subjectTitle, unitTitle]);
 
   return (
     <Layout>

@@ -143,6 +143,18 @@ const Home = () => {
   const navigate = useNavigate();
   const completedUnits = JSON.parse(sessionStorage.getItem('edqualis-completed-units') || '[]');
   
+  // Real History Logic
+  const [testHistory] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('edqualis-test-history') || '[]');
+    } catch (e) {
+      return [];
+    }
+  });
+
+  // Hover state for tooltips
+  const [hoveredPoint, setHoveredPoint] = useState(null);
+  
   // QOTD State
   const [qotdAnswerRevealed, setQotdAnswerRevealed] = useState(false);
   const qotd = {
@@ -151,14 +163,42 @@ const Home = () => {
     correctAnswer: 0
   };
   
-  // Calculate Stats
+  // Calculate Global Stats
   const totalSubjects = subjectsData.filter(s => !s.locked).length;
   const totalUnits = subjectsData.reduce((acc, sub) => acc + sub.units.length, 0);
   
   // Actually counting questions from the imported modules for accurate total
-  const totalQuestions = subjectsData.reduce((acc, sub) => {
+  const totalQuestionsInSystem = subjectsData.reduce((acc, sub) => {
     return acc + sub.units.reduce((uAcc, unit) => uAcc + unit.questions.length, 0);
   }, 0);
+
+  // Aggregate Stats from history
+  const realTestsCompleted = testHistory.length;
+  const realQuestionsAnswered = testHistory.reduce((acc, curr) => acc + curr.total, 0);
+  const realAvgAccuracy = realTestsCompleted > 0 
+    ? Math.round(testHistory.reduce((acc, curr) => acc + curr.accuracy, 0) / realTestsCompleted) 
+    : 0;
+
+  // Chart Logic
+  // We want to show cumulative questions answered over time
+  const getGraphData = () => {
+    if (testHistory.length === 0) return [];
+    
+    let cumulative = 0;
+    return testHistory.slice(-7).map((test, index) => {
+      cumulative += test.total;
+      return {
+        cumulative,
+        accuracy: test.accuracy,
+        unitTitle: test.unitTitle,
+        timestamp: new Date(test.timestamp).toLocaleDateString()
+      };
+    });
+  };
+
+  const graphData = getGraphData();
+  const maxQuestions = graphData.length > 0 ? Math.max(...graphData.map(d => d.cumulative), 50) : 50;
+  const overallProgressPercent = totalUnits > 0 ? Math.round((completedUnits.length / totalUnits) * 100) : 0;
 
   // Find Continue Learning (First subject with progress < 100 and > 0)
   const lastActiveSubject = subjectsData.find(s => {
@@ -227,48 +267,111 @@ const Home = () => {
             </div>
             
             <div className="analytics-container">
-              {/* Line Chart Section */}
+              {/* Dynamic Line Chart Section */}
               <div className="analytics-card chart-card">
                 <div className="chart-header">
-                  <h3>Learning Activity</h3>
-                  <span>Last 4 Weeks</span>
+                  <h3>Learning Growth</h3>
+                  <span>Questions Attempted</span>
                 </div>
                 
                 <div className="simple-line-chart">
                   <div className="chart-y-axis">
-                    <span>30</span>
-                    <span>20</span>
-                    <span>10</span>
+                    <span>{maxQuestions}</span>
+                    <span>{Math.round(maxQuestions / 2)}</span>
                     <span>0</span>
                   </div>
                   <div className="chart-graph-area">
-                    <svg viewBox="0 0 400 200" className="chart-svg">
-                      <defs>
-                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="rgba(59, 130, 246, 0.4)" />
-                          <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M 0,160 L 133,100 L 266,50 L 400,0 L 400,200 L 0,200 Z" fill="url(#chartGradient)" />
-                      <polyline points="0,160 133,100 266,50 400,0" fill="none" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                      
-                      {/* Data Points */}
-                      <circle cx="0" cy="160" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
-                      <circle cx="133" cy="100" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
-                      <circle cx="266" cy="50" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
-                      <circle cx="400" cy="0" r="6" fill="#1e293b" stroke="#3b82f6" strokeWidth="3" />
-                    </svg>
+                    {graphData.length > 1 ? (
+                      <svg viewBox="0 0 400 200" className="chart-svg" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="rgba(59, 130, 246, 0.4)" />
+                            <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+                          </linearGradient>
+                        </defs>
+                        {/* Area Path */}
+                        <path 
+                          d={`M 0,200 ${graphData.map((d, i) => 
+                            `L ${(i / (graphData.length - 1)) * 400},${200 - (d.cumulative / maxQuestions) * 180}`
+                          ).join(' ')} L 400,200 Z`} 
+                          fill="url(#chartGradient)" 
+                        />
+                        {/* Line Path */}
+                        <polyline 
+                          points={graphData.map((d, i) => 
+                            `${(i / (graphData.length - 1)) * 400},${200 - (d.cumulative / maxQuestions) * 180}`
+                          ).join(' ')} 
+                          fill="none" 
+                          stroke="#3b82f6" 
+                          strokeWidth="4" 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                        />
+                        
+                        {/* Tooltip Data Points */}
+                        {graphData.map((d, i) => (
+                          <g 
+                            key={i}
+                            onMouseEnter={() => setHoveredPoint({ ...d, x: (i / (graphData.length - 1)) * 400, y: 200 - (d.cumulative / maxQuestions) * 180 })}
+                            onMouseLeave={() => setHoveredPoint(null)}
+                            style={{ cursor: 'pointer' }}
+                          >
+                            <circle 
+                              cx={(i / (graphData.length - 1)) * 400} 
+                              cy={200 - (d.cumulative / maxQuestions) * 180} 
+                              r="6" 
+                              fill="#1e293b" 
+                              stroke="#3b82f6" 
+                              strokeWidth="3" 
+                            />
+                          </g>
+                        ))}
+                      </svg>
+                    ) : (
+                      <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', fontSize: '0.9rem' }}>
+                        Complete {graphData.length === 0 ? 'a test' : 'more tests'} to see growth data
+                      </div>
+                    )}
+                    
+                    {/* Tooltip Popup */}
+                    {hoveredPoint && (
+                      <div style={{
+                        position: 'absolute',
+                        left: `${(hoveredPoint.x / 400) * 100}%`,
+                        top: `${(hoveredPoint.y / 200) * 100}%`,
+                        transform: 'translate(-50%, -120%)',
+                        background: '#1e293b',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        padding: '10px 14px',
+                        borderRadius: '12px',
+                        zIndex: 100,
+                        pointerEvents: 'none',
+                        boxShadow: '0 10px 25px rgba(0,0,0,0.5)',
+                        minWidth: '150px'
+                      }}>
+                        <div style={{ color: 'white', fontWeight: 700, fontSize: '0.9rem', marginBottom: '4px' }}>{hoveredPoint.unitTitle}</div>
+                        <div style={{ color: '#94a3b8', fontSize: '0.8rem', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Total Answered:</span>
+                          <span style={{ color: 'white' }}>{hoveredPoint.cumulative}</span>
+                        </div>
+                        <div style={{ color: '#94a3b8', fontSize: '0.8rem', display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Accuracy:</span>
+                          <span style={{ color: '#22c55e' }}>{hoveredPoint.accuracy}%</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="chart-x-axis">
-                    <span>W1</span>
-                    <span>W2</span>
-                    <span>W3</span>
-                    <span>W4</span>
+                    {graphData.length > 0 ? (
+                      graphData.map((d, i) => <span key={i}>T{i + 1}</span>)
+                    ) : (
+                      <><span>-</span><span>-</span><span>-</span><span>-</span></>
+                    )}
                   </div>
                 </div>
               </div>
 
-              {/* Circular Progress Section */}
+              {/* Real Circular Progress Section */}
               <div className="analytics-card progress-circle-card">
                 <h3>Overall Progress</h3>
                 <div className="analytics-circle-wrapper">
@@ -281,7 +384,7 @@ const Home = () => {
                       strokeWidth="12" 
                       strokeLinecap="round" 
                       strokeDasharray="439.8" 
-                      strokeDashoffset="219.9" /* Shows 50% */
+                      strokeDashoffset={439.8 * (1 - overallProgressPercent / 100)} 
                       style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', transition: 'stroke-dashoffset 1.5s ease' }}
                     />
                     <defs>
@@ -292,38 +395,39 @@ const Home = () => {
                     </defs>
                   </svg>
                   <div className="circle-inner-text">
-                    <span className="percent">50%</span>
+                    <span className="percent">{overallProgressPercent}%</span>
                     <span className="label">Completed</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Stats Summary */}
-            <div className="analytics-stats-grid">
+            {/* Real Stats Summary */}
+            <div className="analytics-stats-grid" style={{ marginTop: '24px' }}>
               <div className="analytics-stat-card">
                 <div className="stat-icon-wrapper blue">📋</div>
                 <div className="stat-details">
                   <span className="stat-label">Tests Attempted</span>
-                  <span className="stat-value">12</span>
+                  <span className="stat-value">{realTestsCompleted}</span>
                 </div>
               </div>
               <div className="analytics-stat-card">
                 <div className="stat-icon-wrapper purple">📝</div>
                 <div className="stat-details">
                   <span className="stat-label">Questions Answered</span>
-                  <span className="stat-value">180</span>
+                  <span className="stat-value">{realQuestionsAnswered}</span>
                 </div>
               </div>
               <div className="analytics-stat-card">
                 <div className="stat-icon-wrapper green">🎯</div>
                 <div className="stat-details">
-                  <span className="stat-label">Accuracy</span>
-                  <span className="stat-value">72%</span>
+                  <span className="stat-label">Avg. Accuracy</span>
+                  <span className="stat-value">{realAvgAccuracy}%</span>
                 </div>
               </div>
             </div>
           </div>
+
 
           <div className="daily-widgets-grid">
             {/* Daily Practice */}
