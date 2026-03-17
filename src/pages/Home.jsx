@@ -114,7 +114,7 @@ export const TopHeader = ({ onToggleSidebar }) => {
           <div className="info-modal-content" onClick={e => e.stopPropagation()}>
             <div className="info-modal-header">
               <h3>About This Platform</h3>
-              <button className="info-modal-close" onClick={() => setInfoModalOpen(false)}>Close ✖</button>
+              <button className="info-modal-close" onClick={() => setInfoModalOpen(false)}>✖ Close</button>
             </div>
             <div className="info-modal-body">
               <p>This website is designed for students to practice MCQ questions, revise important concepts, and prepare for exams efficiently.</p>
