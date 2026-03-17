@@ -550,7 +550,7 @@ const Home = () => {
               <div className="stat-card stat-card-small">
                 <div className="stat-icon">📝</div>
                 <div className="stat-info">
-                  <h2>{totalQuestions}</h2>
+                  <h2>{totalQuestionsInSystem}</h2>
                   <span>Questions</span>
                 </div>
               </div>
