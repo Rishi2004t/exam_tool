@@ -2345,24 +2345,32 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  padding: 20px;
   animation: fadeIn 0.3s ease;
 }
 
 .info-modal-content {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: #ffffff;
   border-radius: 20px;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
-  padding: 30px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  position: relative;
   animation: modal-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (max-width: 640px) {
+  .info-modal-content {
+    width: 95%;
+    padding: 24px;
+  }
 }
 
 .info-modal-header {
@@ -2374,41 +2382,46 @@ body {
 
 .info-modal-header h3 {
   margin: 0;
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-top: 8px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1e293b;
 }
 
 .info-modal-close {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--card-border);
-  color: var(--text-secondary);
-  padding: 8px 16px;
-  border-radius: 10px;
+  background: #f1f5f9;
+  border: none;
+  color: #64748b;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-weight: 600;
+  font-weight: 800;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .info-modal-close:hover {
-  background: rgba(239, 68, 68, 0.1);
+  background: #fee2e2;
   color: #ef4444;
-  border-color: rgba(239, 68, 68, 0.2);
 }
 
 .info-modal-body p {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  font-size: 1.05rem;
-  margin-bottom: 16px;
+  color: #475569;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
 }
 
 .info-modal-body p:last-child {
   margin-bottom: 0;
-  color: var(--theme-primary);
-  font-weight: 500;
+  color: #3b82f6;
+  font-weight: 600;
 }
 
 .info-icon-btn {
