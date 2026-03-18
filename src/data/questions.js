@@ -1,4 +1,5 @@
 import combinatorialStudiesQuestions from './combinatorialStudiesQuestions';
+import mkt203Questions from './mkt203Questions';
 
 export const subjectsData = [
   {
@@ -156,6 +157,29 @@ export const subjectsData = [
   },
   { id: 'data-structures', title: 'Data Structures', locked: true, units: [] },
   { id: 'computer-networks', title: 'Computer Networks', locked: true, units: [] },
-  { id: 'operating-systems', title: 'Operating Systems', locked: true, units: [] }
+  { id: 'operating-systems', title: 'Operating Systems', locked: true, units: [] },
+  {
+    id: 'mkt-203',
+    title: 'MKT 203',
+    locked: false,
+    type: 'theory',
+    units: [
+      {
+        id: 'mkt203-unit1',
+        title: 'Unit I – Introduction to Product Management',
+        questions: mkt203Questions['unit1']
+      },
+      {
+        id: 'mkt203-unit2',
+        title: 'Unit II – Product Management Decisions',
+        questions: mkt203Questions['unit2']
+      },
+      {
+        id: 'mkt203-unit3',
+        title: 'Unit III – Marketing Metrics',
+        questions: mkt203Questions['unit3']
+      }
+    ]
+  }
 ];
 

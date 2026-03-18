@@ -7,6 +7,8 @@ import ResultPage from './pages/ResultPage';
 import Settings from './pages/Settings';
 import Syllabus from './pages/Syllabus';
 import PreTestForm from './pages/PreTestForm';
+import TheoryUnitSelection from './pages/TheoryUnitSelection';
+import TheoryUnitDetail from './pages/TheoryUnitDetail';
 import AnimatedBackground from './components/AnimatedBackground';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/syllabus" element={<Syllabus />} />
           <Route path="/materials" element={<Syllabus />} />
           <Route path="/subjects" element={<Home />} />
+          <Route path="/subject/mkt-203" element={<TheoryUnitSelection />} />
+          <Route path="/unit/:unitId" element={<TheoryUnitDetail />} />
           <Route path="/subject/:subjectId" element={<UnitSelection />} />
           <Route path="/unit/:subjectId" element={<UnitSelection />} />
           <Route path="/test/:unitId" element={<TestPage />} />
