@@ -9,6 +9,8 @@ import Syllabus from './pages/Syllabus';
 import PreTestForm from './pages/PreTestForm';
 import TheoryUnitSelection from './pages/TheoryUnitSelection';
 import TheoryUnitDetail from './pages/TheoryUnitDetail';
+import ExamAccess from './pages/ExamAccess';
+import ExamPage from './pages/ExamPage';
 import AnimatedBackground from './components/AnimatedBackground';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
           <Route path="/test/:unitId" element={<TestPage />} />
           <Route path="/pretest/:unitId" element={<PreTestForm />} />
           <Route path="/result" element={<ResultPage />} />
+          <Route path="/exam" element={<ExamAccess />} />
+          <Route path="/exam-test" element={<ExamPage />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </AnimatedBackground>

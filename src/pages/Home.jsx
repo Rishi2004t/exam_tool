@@ -11,6 +11,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
     { name: 'Dashboard', icon: '🏠', path: '/' },
     { name: 'Syllabus', icon: '📋', path: '/syllabus' },
     { name: 'Subjects', icon: '📚', path: '/subjects' },
+    { name: 'Official Exam', icon: '🛡️', path: '/exam' },
     { name: 'My Results', icon: '📈', path: '/result' },
     { name: 'Settings', icon: '⚙️', path: '/settings' },
   ];

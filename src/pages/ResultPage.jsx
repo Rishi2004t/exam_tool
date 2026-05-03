@@ -172,13 +172,23 @@ const ResultPage = () => {
 
         {/* --- Action Buttons --- */}
         <div style={{ display: 'flex', gap: '16px', marginBottom: '48px', flexWrap: 'wrap' }}>
-          <button
-            className="btn-continue"
-            style={{ flex: 1, minWidth: '160px' }}
-            onClick={() => navigate(`/pretest/${unitId}`)}
-          >
-            🔁 Retry Test
-          </button>
+          {unitId === 'exam-mode' ? (
+            <button
+              className="btn btn-secondary"
+              style={{ flex: 1, minWidth: '160px', minHeight: '48px', fontSize: '1rem', borderRadius: '12px', cursor: 'pointer' }}
+              onClick={() => navigate('/exam')}
+            >
+              🛡️ Return to Exam Portal
+            </button>
+          ) : (
+            <button
+              className="btn-continue"
+              style={{ flex: 1, minWidth: '160px' }}
+              onClick={() => navigate(`/pretest/${unitId}`)}
+            >
+              🔁 Retry Test
+            </button>
+          )}
           <button
             className="btn btn-secondary"
             style={{ flex: 1, minWidth: '160px', minHeight: '48px', fontSize: '1rem', borderRadius: '12px', cursor: 'pointer' }}
