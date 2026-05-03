@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from './Home';
+import { validTokens } from '../data/tokens';
 
 const SqlExamAccess = () => {
   const [token, setToken] = useState('');
@@ -8,24 +9,37 @@ const SqlExamAccess = () => {
   const navigate = useNavigate();
 
   const handleStartTest = () => {
-    const VALID_TOKEN = 'SQL50';
+    const inputToken = token.trim().toUpperCase();
     
-    // Check if test already attempted
-    const attemptedTokens = JSON.parse(localStorage.getItem('attemptedTokens') || '[]');
+    // 1. Find the token in the "database"
+    const tokenData = validTokens.find(t => t.code === inputToken);
     
-    if (attemptedTokens.includes(token)) {
-      setError('You have already attempted this test');
+    if (!tokenData) {
+      setError('Invalid Token');
       return;
     }
 
-    if (token === VALID_TOKEN) {
-      setError('');
-      // Save token to session to ensure user doesn't just bypass the access page
-      sessionStorage.setItem('sqlExamToken', token);
-      navigate('/sql-exam-test');
-    } else {
-      setError('Invalid Token');
+    // 2. Check if already used (One-time use logic)
+    const usedTokens = JSON.parse(localStorage.getItem('usedTokens') || '[]');
+    if (usedTokens.includes(inputToken)) {
+      setError('This token has already been used');
+      return;
     }
+
+    // 3. Check for expiry (1 hour)
+    const createdAt = new Date(tokenData.createdAt).getTime();
+    const now = new Date().getTime();
+    const oneHour = 60 * 60 * 1000;
+
+    if (now - createdAt > oneHour) {
+      setError('This token has expired');
+      return;
+    }
+
+    // 4. If all checks pass
+    setError('');
+    sessionStorage.setItem('sqlExamToken', inputToken);
+    navigate('/sql-exam-test');
   };
 
   return (

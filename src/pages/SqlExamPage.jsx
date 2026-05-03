@@ -14,8 +14,8 @@ const SqlExamPage = () => {
     }
     
     // Check if already attempted
-    const attemptedTokens = JSON.parse(localStorage.getItem('attemptedTokens') || '[]');
-    if (attemptedTokens.includes(sqlExamToken)) {
+    const usedTokens = JSON.parse(localStorage.getItem('usedTokens') || '[]');
+    if (usedTokens.includes(sqlExamToken)) {
       navigate('/sql-exam');
     }
   }, [sqlExamToken, navigate]);
@@ -57,11 +57,11 @@ const SqlExamPage = () => {
     if (isSubmitted) return;
     setIsSubmitted(true);
 
-    // Save token as used
-    const attemptedTokens = JSON.parse(localStorage.getItem('attemptedTokens') || '[]');
-    if (!attemptedTokens.includes(sqlExamToken)) {
-      attemptedTokens.push(sqlExamToken);
-      localStorage.setItem('attemptedTokens', JSON.stringify(attemptedTokens));
+    // Save token as used (One-time use logic)
+    const usedTokens = JSON.parse(localStorage.getItem('usedTokens') || '[]');
+    if (!usedTokens.includes(sqlExamToken)) {
+      usedTokens.push(sqlExamToken);
+      localStorage.setItem('usedTokens', JSON.stringify(usedTokens));
     }
 
     // Navigate to result
