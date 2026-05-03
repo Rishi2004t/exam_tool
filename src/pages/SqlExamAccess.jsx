@@ -26,14 +26,16 @@ const SqlExamAccess = () => {
       return;
     }
 
-    // 3. Check for expiry (1 hour)
-    const createdAt = new Date(tokenData.createdAt).getTime();
-    const now = new Date().getTime();
-    const oneHour = 60 * 60 * 1000;
+    // 3. Check for expiry (1 hour) - Skip if token is permanent
+    if (!tokenData.isPermanent) {
+      const createdAt = new Date(tokenData.createdAt).getTime();
+      const now = new Date().getTime();
+      const oneHour = 60 * 60 * 1000;
 
-    if (now - createdAt > oneHour) {
-      setError('This token has expired');
-      return;
+      if (now - createdAt > oneHour) {
+        setError('This token has expired');
+        return;
+      }
     }
 
     // 4. If all checks pass
