@@ -11,6 +11,8 @@ import TheoryUnitSelection from './pages/TheoryUnitSelection';
 import TheoryUnitDetail from './pages/TheoryUnitDetail';
 import ExamAccess from './pages/ExamAccess';
 import ExamPage from './pages/ExamPage';
+import SqlExamAccess from './pages/SqlExamAccess';
+import SqlExamPage from './pages/SqlExamPage';
 import AnimatedBackground from './components/AnimatedBackground';
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
           <Route path="/result" element={<ResultPage />} />
           <Route path="/exam" element={<ExamAccess />} />
           <Route path="/exam-test" element={<ExamPage />} />
+          <Route path="/sql-exam" element={<SqlExamAccess />} />
+          <Route path="/sql-exam-test" element={<SqlExamPage />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </AnimatedBackground>

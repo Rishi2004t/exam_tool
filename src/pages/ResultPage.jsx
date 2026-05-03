@@ -172,11 +172,11 @@ const ResultPage = () => {
 
         {/* --- Action Buttons --- */}
         <div style={{ display: 'flex', gap: '16px', marginBottom: '48px', flexWrap: 'wrap' }}>
-          {unitId === 'exam-mode' ? (
+          {unitId === 'exam-mode' || unitId === 'sql-exam-mode' ? (
             <button
               className="btn btn-secondary"
               style={{ flex: 1, minWidth: '160px', minHeight: '48px', fontSize: '1rem', borderRadius: '12px', cursor: 'pointer' }}
-              onClick={() => navigate('/exam')}
+              onClick={() => navigate(unitId === 'exam-mode' ? '/exam' : '/sql-exam')}
             >
               🛡️ Return to Exam Portal
             </button>
