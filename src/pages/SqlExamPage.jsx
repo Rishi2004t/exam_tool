@@ -5,20 +5,18 @@ import { sqlQuestions } from '../data/sqlQuestions';
 const SqlExamPage = () => {
   const navigate = useNavigate();
   
-  // Security check: Check if token exists in session
-  const sqlExamToken = sessionStorage.getItem('sqlExamToken');
-  
+  // IMMEDIATELY BLOCK ACCESS AS TEST IS CLOSED
   useEffect(() => {
-    if (!sqlExamToken) {
-      navigate('/sql-exam');
-    }
-    
-    // Check if already attempted
-    const usedTokens = JSON.parse(localStorage.getItem('usedTokens') || '[]');
-    if (usedTokens.includes(sqlExamToken)) {
-      navigate('/sql-exam');
-    }
-  }, [sqlExamToken, navigate]);
+    navigate('/sql-exam');
+  }, [navigate]);
+  
+  return null; // Don't render anything as the test is closed
+
+  // --- PREVIOUS LOGIC PRESERVED BELOW FOR REFERENCE ---
+  /*
+  const sqlExamToken = sessionStorage.getItem('sqlExamToken');
+  ...*/
+};
 
   const examQuestions = sqlQuestions;
   const examTitle = "SQL Master Examination";

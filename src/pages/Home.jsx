@@ -12,7 +12,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
     { name: 'Syllabus', icon: '📋', path: '/syllabus' },
     { name: 'Subjects', icon: '📚', path: '/subjects' },
     { name: 'Official Exam', icon: '🛡️', path: '/exam' },
-    { name: 'SQL Master Exam', icon: '🗄️', path: '/sql-exam' },
+    { name: 'SQL Master Exam (Closed)', icon: '🔒', path: '/sql-exam' },
     { name: 'My Results', icon: '📈', path: '/result' },
     { name: 'Settings', icon: '⚙️', path: '/settings' },
   ];
