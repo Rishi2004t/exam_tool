@@ -214,15 +214,7 @@ const Home = () => {
   const navigate = useNavigate();
   const completedUnits = JSON.parse(sessionStorage.getItem('edqualis-completed-units') || '[]');
   
-  // Announcement State
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowAnnouncement(false);
-    }, 10000); // 10 seconds
-    return () => clearTimeout(timer);
-  }, []);
+  // Announcement State Removed
   
   // Real History Logic
   const [testHistory] = useState(() => {
@@ -298,115 +290,6 @@ const Home = () => {
 
   return (
     <Layout>
-      {/* Exam Announcement Popup */}
-      {showAnnouncement && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(2, 6, 23, 0.85)',
-          backdropFilter: 'blur(12px)',
-          zIndex: 10000,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px',
-          animation: 'fadeIn 0.3s ease-out'
-        }}>
-          <div style={{
-            maxWidth: '500px',
-            width: '100%',
-            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
-            borderRadius: '32px',
-            padding: '40px',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-            textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden'
-          }}>
-            {/* Animated Glow */}
-            <div style={{
-              position: 'absolute',
-              top: '-50%',
-              left: '-50%',
-              width: '200%',
-              height: '200%',
-              background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
-              animation: 'pulse 4s infinite'
-            }}></div>
-
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <div style={{ fontSize: '4rem', marginBottom: '24px' }}>📢</div>
-              <h2 style={{ 
-                fontSize: '2rem', 
-                fontWeight: 900, 
-                color: 'white', 
-                marginBottom: '16px',
-                background: 'linear-gradient(90deg, #60a5fa, #3b82f6)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                Exam Announcement
-              </h2>
-              <p style={{ 
-                color: '#cbd5e1', 
-                fontSize: '1.2rem', 
-                lineHeight: 1.6, 
-                marginBottom: '32px',
-                fontWeight: 500
-              }}>
-                Today is the exam. You have to take the exam. <br/>
-                <span style={{ color: '#60a5fa', fontWeight: 800 }}>Time: 1:00 PM to 9:00 PM</span> <br/>
-                Please take the exam as soon as possible.
-              </p>
-              
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <button 
-                  onClick={() => navigate('/sql-exam')}
-                  style={{
-                    flex: 2,
-                    padding: '16px',
-                    borderRadius: '16px',
-                    border: 'none',
-                    background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
-                    color: 'white',
-                    fontSize: '1.1rem',
-                    fontWeight: 800,
-                    cursor: 'pointer',
-                    boxShadow: '0 10px 20px -5px rgba(37, 99, 235, 0.4)'
-                  }}
-                >
-                  Go to Exam
-                </button>
-                <button 
-                  onClick={() => setShowAnnouncement(false)}
-                  style={{
-                    flex: 1,
-                    padding: '16px',
-                    borderRadius: '16px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    color: '#94a3b8',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Close
-                </button>
-              </div>
-              
-              <div style={{ marginTop: '20px', color: '#64748b', fontSize: '0.8rem' }}>
-                Dismissing in 10 seconds...
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="home-dashboard-layout animate-in">
         
         {/* MAIN CONTENT AREA */}
